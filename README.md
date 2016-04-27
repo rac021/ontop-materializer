@@ -1,3 +1,23 @@
-ontop-materializer
+ontop-materializer based on version 1.17.1
 ==============
 
+Mterialize triples from database using  : Ontop-Quest API + ODBA file + Ontology.
+
+Steps : 
+
+ 1- mvn clean install assembly:single
+ 
+ 2- Args :
+ 
+    - owl   :  owl path file ( Required )
+    
+    - odba  :  Mapping file ( Required )
+    
+    - out   :  output path file ( Required )
+    
+    - q     :  Sparql Query ( Required )
+    
+  3- Exp :
+  
+     java -Xms1024M -Xmx2048M -cp ntop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
+     -owl lac.owl -odba lac.obda -out ontopMaterializedTriples.nt -q " select ?s ?p ?o { ?s ?p ?o } limit 100 "
