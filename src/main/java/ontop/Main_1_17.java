@@ -206,7 +206,7 @@ public class Main_1_17 {
         System.out.println(" q    =  " + q)        ;
         
         if( nbParams < 6 ) {
-             System.out.println(" Nombre paramètres incomplet !! ");
+             System.out.println(" Nombre paramètres incomplet !! ") ;
              return ;
         }
         
