@@ -15,7 +15,7 @@ Steps :
     
     - out   :  output path file ( Required )
     
-    - q     :  Sparql Query ( Required )
+    - q     :  Sparql Query ( not Required )  defaultSparqlQuery "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " 
     
   3- Exp    :
   
