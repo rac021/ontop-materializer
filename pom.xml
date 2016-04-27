@@ -26,7 +26,7 @@
         <plugins>
             
             <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
@@ -40,7 +40,7 @@
               <configuration>
                 <archive>
                   <manifest>
-                    <mainClass>fully.qualified.MainClass</mainClass>
+                    <mainClass>ontop.Main_1_17</mainClass>
                   </manifest>
                 </archive>
                 <descriptorRefs>
@@ -50,5 +50,6 @@
             </plugin>
                         
         </plugins>
+        
     </build>
 </project>
