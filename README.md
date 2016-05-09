@@ -9,13 +9,13 @@ Steps :
  
  2- Args :
  
-    - owl   :  owl path file ( Required )
+   `- owl  :  owl path file    ( Required ) ` 
     
-    - odba  :  Mapping file ( Required )
+   `- odba :  Mapping file     ( Required ) ` 
     
-    - out   :  output path file ( Required )
+   `- out  :  output path file ( Required ) ` 
     
-    - q     :  Sparql Query ( not Required )  defaultSparqlQuery "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " 
+    `- q   :  Sparql Query     ( not Required )  default SparqlQuery "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " ` 
     
   3- Exp    :
   
