@@ -20,15 +20,15 @@ Steps :
   3- Exp    :
   
      java -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
-     -owl 'ontology.owl' \
-     -obda 'ontology.obda' \
-     -out 'ontopMaterializedTriples.nt' \
+     -owl 'ontology.owl'                                                                              \
+     -obda 'ontology.obda'                                                                            \
+     -out './ontopMaterializedTriples.nt'                                                             \
      -q " SELECT ?S ?P ?O { ?S ?P ?O } "
 
      java -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
-     -owl 'ontology.owl' \
-     -obda 'ontology.obda' \
-     -out 'ontopMaterializedTriples.nt'
+     -owl 'ontology.owl'                                                                              \
+     -obda 'ontology.obda'                                                                            \
+     -out './ontopMaterializedTriples.nt'
      
      
     
