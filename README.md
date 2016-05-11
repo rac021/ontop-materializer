@@ -9,7 +9,7 @@ Steps :
  
  2- Args :
  
-   `-owl  :  owl path file ( Required ) ` 
+   `-owl    :  owl path file ( Required ) ` 
     
    `-odba :  Mapping file ( Required ) ` 
     
