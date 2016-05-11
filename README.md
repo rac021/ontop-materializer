@@ -9,7 +9,7 @@ Steps :
  
  2- Args :
  
-   `-owl    :  owl path file ( Required ) ` 
+   `-owl  :  owl path file ( Required ) ` 
     
    `-odba :  Mapping file ( Required ) ` 
     
@@ -17,7 +17,7 @@ Steps :
     
    `-q    :  Sparql Query ( Not Required ) Default "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " `
     
-  3- Exp    :
+  3- Exp :
   
      java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
      -owl  'ontology.owl'                                                                              \
@@ -30,5 +30,4 @@ Steps :
      -obda 'ontology.obda'                                                                             \
      -out  './ontopMaterializedTriples.nt'
      
-     
-    
+
