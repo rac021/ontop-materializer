@@ -5,9 +5,9 @@ Materialize triples from database using : Ontop-Quest API + ODBA file + Ontology
 
 Steps : 
 
- 1- mvn clean install assembly:single
+ 1 - `mvn clean install assembly:single`
  
- 2- Args :
+ 2 - Args 
  
    `-owl  :  owl path file ( Required ) ` 
     
@@ -17,7 +17,7 @@ Steps :
     
    `-q    :  Sparql Query ( Not Required ) Default "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " `
     
-  3- Exp :
+  3 - Exp 
   
      java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
      -owl  'ontology.owl'                                                                              \
