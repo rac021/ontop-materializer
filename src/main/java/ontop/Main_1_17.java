@@ -155,15 +155,15 @@ public class Main_1_17 {
        return manager.loadOntologyFromOntologyDocument(new File(owlFile)) ;
     }
 
-   private boolean isURL( String path ) {
-          return ( path.toLowerCase().startsWith("http://")  ||
-                   path.toLowerCase().startsWith("https://") ) 
-                 && !path.contains(" ") ;
-   }
+    private boolean isURL( String path ) {
+          return ( path.toLowerCase().startsWith("<http://")  ||
+                   path.toLowerCase().startsWith("<https://") ) 
+                   && !path.contains(" ") ;
+    }
 
-   private boolean isRDFtype ( String string ) {
+    private boolean isRDFtype ( String string ) {
        return  string.toLowerCase().equals("rdf:type") ;
-   }
+    }
      
     /**
      * Main client program
