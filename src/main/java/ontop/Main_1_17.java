@@ -1,4 +1,3 @@
-
 package ontop;
 
 import java.io.File;
@@ -22,6 +21,7 @@ import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLStatement;
 import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLResultSet;
 import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConnection;
 import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConfiguration;
+import java.util.Arrays;
 
 public class Main_1_17 {
  
@@ -34,6 +34,8 @@ public class Main_1_17 {
     private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
     private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;µs%°]*[-a-zA-Z0-9+&@#/%=~_|]" ;
 
+    private final List<String> XSD     = Arrays.asList( "string", "integer", "decimal","double", "dateTime", "boolean" ) ;
+    
     private Main_1_17 (String owlFile, String obdaFile) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
         obdaModel  = loadOBDA(obdaFile) ;
@@ -104,23 +106,23 @@ public class Main_1_17 {
                 else {
                     if(isURI(p))  p = URLEncoder.encode(p) ;
                 }
-              
-                if(isRDFtype(o))  o = RDF_TYPE_URI ;                
+                 
+                if(isRDFtype(o))  o = RDF_TYPE_URI ;   
                 else {
                     if(isURI(o) )    
-                        o = URLEncoder.encode(o) ;
+                        o = URLEncoder.encode(o)   ;
                     else 
                     {
                         String xsdType = getXSDType(o);
                         if(xsdType != null ) {
                             o = "\"" + URLDecoder.decode( o.substring( 1, o.lastIndexOf(">"))
-                                           .split(Pattern.quote("^^xsd:"))[0] , "UTF-8" )
-                                           .replaceAll("\"", "'") + "\"" + xsdType ;
+                                           .split(Pattern.quote("^^xsd:"))[0] , 
+                                           "UTF-8" ).replaceAll("\"", "'") + "\"" + xsdType ;
                         }
                         else
                         if( o.startsWith("<") && o.endsWith(">")) {
-                            o = "\"" + o.substring(1, o.lastIndexOf(">"))
-                                        .replaceAll("\"", "'") + "\"" + DATATYPE ;
+                            o = "\"" + URLDecoder.decode(o.substring(1, o.lastIndexOf(">"))
+                                       ,"UTF-8").replaceAll("\"", "'") + "\"" + DATATYPE  ;
                         }
                     }
                 }
@@ -154,11 +156,11 @@ public class Main_1_17 {
         OBDADataFactory factory        = OBDADataFactoryImpl.getInstance()  ;
         OBDAModel       localobdaModel = factory.getOBDAModel()             ;
         ModelIOManager  ioManager      = new ModelIOManager(localobdaModel) ;
-        ioManager.load(obdaFile) ;
-        return localobdaModel    ;
+        ioManager.load(obdaFile)                                            ;
+        return localobdaModel                                               ;
     }
 
-    private OWLOntology loadOWLOntology(String owlFile) throws Exception {
+    private OWLOntology loadOWLOntology(String owlFile) throws Exception  {
        OWLOntologyManager manager = OWLManager.createOWLOntologyManager() ;
        return manager.loadOntologyFromOntologyDocument(new File(owlFile)) ;
     }
@@ -175,13 +177,19 @@ public class Main_1_17 {
    }
    
    private String getXSDType ( String value ) {
-      if(value.startsWith("<")   && 
-         value.endsWith(">")     && 
-         value.contains("^^xsd:")) {
+      if(value.startsWith("<")    && 
+         value.  endsWith(">")    && 
+         value.contains("^^xsd:") &&
+         valideXSD(value.substring(1, value.lastIndexOf(">"))
+                                .split(Pattern.quote("^^xsd:"))[1]) ) {
          return "^^xsd:" + value.substring(1, value.lastIndexOf(">"))
                                 .split(Pattern.quote("^^xsd:"))[1]  ;
       }
       return null ;
+   }
+   
+   private boolean valideXSD( String xsd ) {
+       return XSD.contains(xsd);
    }
      
     /**
