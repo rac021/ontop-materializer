@@ -29,9 +29,9 @@ public class Main_1_17 {
     private final OWLOntology ontology   ;
     private final OBDAModel   obdaModel  ;
     
-    private final String DATATYPE      = "^^xsd:string";
+    private final String DATATYPE      = "^^xsd:string" ;
     private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
-    private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+    private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;µs%°]*[-a-zA-Z0-9+&@#/%=~_|]" ;
 
     private Main_1_17 (String owlFile, String obdaFile) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
@@ -103,19 +103,18 @@ public class Main_1_17 {
                 else {
                     if(isURI(p))  p = URLEncoder.encode(p) ;
                 }
-                
+              
                 if(isRDFtype(o))  o = RDF_TYPE_URI ;                
                 else {
                     if(isURI(o) )    
                         o = URLEncoder.encode(o) ;
                     else 
-                    if(!isURI(URLDecoder.decode(o, "UTF-8" )) ) {
-
+                    {
                         String xsdType = getXSDType(o);
                         if(xsdType != null ) {
                             o = "\"" + URLDecoder.decode( o.substring( 1, o.lastIndexOf(">"))
-                                           .split(Pattern.quote("^^xsd:"))[0] , 
-                                           "UTF-8" ).replaceAll("\"", "'") + "\"" + xsdType ;
+                                           .split(Pattern.quote("^^xsd:"))[0] , "UTF-8" )
+                                           .replaceAll("\"", "'") + "\"" + xsdType ;
                         }
                         else
                         if( o.startsWith("<") && o.endsWith(">")) {
@@ -165,7 +164,7 @@ public class Main_1_17 {
 
    private boolean isURI( String path ) { 
        if(path.startsWith("<") && path.endsWith(">")) {
-           return path.substring(1, path.lastIndexOf(">")).matches(URI_VALIDATOR);
+           return path.substring(1, path.lastIndexOf(">")).matches(URI_VALIDATOR) ;
        }
        return false ;
    }
@@ -198,7 +197,7 @@ public class Main_1_17 {
        int nbParams = 0 ;
        
         if( args.length < 6 ) {
-             System.out.println(" Missing parameters !! ") ;
+             System.out.println(" missing parameters !! ") ;
              return ;
         }
             
@@ -225,7 +224,7 @@ public class Main_1_17 {
         System.out.println(" q    =  " + q)        ;
         
         if( nbParams < 6 ) {
-           System.out.println(" Missing parameters !! ") ;
+           System.out.println(" missing parameters !! ") ;
            return ;
         }
         
