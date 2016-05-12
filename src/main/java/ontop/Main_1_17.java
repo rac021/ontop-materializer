@@ -3,6 +3,7 @@ package ontop;
 
 import java.io.File;
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.net.URLDecoder;
 import java.util.regex.Pattern;
@@ -22,7 +23,6 @@ import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLStatement;
 import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLResultSet;
 import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConnection;
 import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConfiguration;
-import java.util.Arrays;
 
 public class Main_1_17 {
  
