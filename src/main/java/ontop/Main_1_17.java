@@ -1,27 +1,28 @@
 package ontop;
 
-import it.unibz.krdb.obda.io.ModelIOManager;
-import it.unibz.krdb.obda.model.OBDADataFactory;
-import it.unibz.krdb.obda.model.OBDAModel;
-import it.unibz.krdb.obda.model.impl.OBDADataFactoryImpl;
-import it.unibz.krdb.obda.owlrefplatform.core.QuestConstants;
-import it.unibz.krdb.obda.owlrefplatform.core.QuestPreferences;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWL;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConfiguration;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConnection;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLFactory;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLResultSet;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLStatement;
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import java.net.URLDecoder;
 import java.util.regex.Pattern;
-
-import org.semanticweb.owlapi.apibinding.OWLManager;
+import it.unibz.krdb.obda.model.OBDAModel;
+import it.unibz.krdb.obda.io.ModelIOManager;
 import org.semanticweb.owlapi.model.OWLObject;
 import org.semanticweb.owlapi.model.OWLOntology;
+import it.unibz.krdb.obda.model.OBDADataFactory;
+import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import it.unibz.krdb.obda.model.impl.OBDADataFactoryImpl;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWL;
+import it.unibz.krdb.obda.owlrefplatform.core.QuestConstants;
+import it.unibz.krdb.obda.owlrefplatform.core.QuestPreferences;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLFactory;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLStatement;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLResultSet;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConnection;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConfiguration;
+
+
 
 public class Main_1_17 {
  
@@ -30,10 +31,12 @@ public class Main_1_17 {
     private final OWLOntology ontology   ;
     private final OBDAModel   obdaModel  ;
     
-    private final String RDF_TYPE_URI = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
     
-    
+    private final String DATATYPE      = "^^xsd:string";
+    private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
+    private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
+    
     private Main_1_17 (String owlFile, String obdaFile) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
         obdaModel  = loadOBDA(obdaFile) ;
@@ -74,14 +77,14 @@ public class Main_1_17 {
             
             int columnSize = rs.getColumnCount() ;
 
-            String s = "", p = "", o = "";
+            String s = "", p = "", o = "" ;
             
             while (rs.nextRow()) {
                 
                 for (int idx = 1; idx <= columnSize; idx++) {
                                         
-                    OWLObject binding = rs.getOWLObject(idx);
-
+                    OWLObject binding = rs.getOWLObject(idx) ;
+                    
                     if( idx == 1 ) { 
                         s = binding.toString() ; continue ; 
                     }
@@ -89,11 +92,11 @@ public class Main_1_17 {
                         p = binding.toString() ; continue ; 
                     }
                     if( idx == 3 ) { 
-                        o = binding.toString() ; 
+                        o = binding.toString() ; continue ;
                     }
                 }
 
-                if( ! isURL(s) ) continue ; 
+                if( ! isURI(s) ) continue ; 
                                   
                 if(isRDFtype(s))  s = RDF_TYPE_URI ;
                 else { 
@@ -102,22 +105,31 @@ public class Main_1_17 {
                 
                 if(isRDFtype(p))  p = RDF_TYPE_URI ;
                 else {
-                    if(isURL(p))  p = URLEncoder.encode(p) ;
+                    if(isURI(p))  p = URLEncoder.encode(p) ;
                 }
                 
-                if(isRDFtype(o))  o = RDF_TYPE_URI ;
+                if(isRDFtype(o))  o = RDF_TYPE_URI ;                
                 else {
-                if(isURL(o))      o = URLEncoder.encode(o) ;
-                else 
-                    if( !o.isEmpty() ) {
-                        o = o.replaceFirst("<", "").replace(">", "") ;
-                        o = o.split(Pattern.quote("^^xsd:"))[0]      ;
-                        if(!o.startsWith("\"") ) o = "\"" + o        ;
-                        if(!o.endsWith(("\"") )) o =  o + "\""       ;
+                    if(isURI(o) )    
+                        o = URLEncoder.encode(o) ;
+                    else 
+                    if(!isURI(URLDecoder.decode(o, "UTF-8" )) ) {
+
+                        String xsdType = getXSDType(o);
+                        if(xsdType != null ) {
+                            o = "\"" + URLDecoder.decode( o.substring( 1, o.lastIndexOf(">"))
+                                           .split(Pattern.quote("^^xsd:"))[0] , 
+                                           "UTF-8" ).replaceAll("\"", "'") + "\"" + xsdType ;
+                        }
+                        else
+                        if( o.startsWith("<") && o.endsWith(">")) {
+                            o = "\"" + o.substring(1, o.lastIndexOf(">"))
+                                        .replaceAll("\"", "'") + "\"" + DATATYPE ;
+                        }
                     }
                 }
 
-                lines.add(s + " " + p +" " + o + " .") ;
+                lines.add( s + " " + p +" " + o + " ." ) ;
 
                 loop++ ;
                   
@@ -129,15 +141,15 @@ public class Main_1_17 {
                   
                 if(loop >= flushCount ) {
                     Writer.writeTextFile(lines, outputFile ) ;                     
-                    lines.clear() ;
-                    loop = 0      ;
+                    lines.clear()                            ;
+                    loop = 0                                 ;
                 }
             }
             
             if( !lines.isEmpty() ) {
                   Writer.writeTextFile(lines, outputFile ) ;
-                  lines.clear() ;
-                  loop = 0      ;
+                  lines.clear()                            ;
+                  loop = 0                                 ;
             }
         } 
     }
@@ -155,15 +167,26 @@ public class Main_1_17 {
        return manager.loadOntologyFromOntologyDocument(new File(owlFile)) ;
     }
 
-    private boolean isURL( String path ) {
-          return ( path.toLowerCase().startsWith("<http://")  ||
-                   path.toLowerCase().startsWith("<https://") ) 
-                   && !path.contains(" ") ;
-    }
-
-    private boolean isRDFtype ( String string ) {
+   private boolean isURI( String path ) { 
+       if(path.startsWith("<") && path.endsWith(">")) {
+           return path.substring(1, path.lastIndexOf(">")).matches(URI_VALIDATOR);
+       }
+       return false ;
+   }
+   
+   private boolean isRDFtype ( String string ) {
        return  string.toLowerCase().equals("rdf:type") ;
-    }
+   }
+   
+   private String getXSDType ( String value ) {
+      if(value.startsWith("<")   && 
+         value.endsWith(">")     && 
+         value.contains("^^xsd:")) {
+         return "^^xsd:" + value.substring(1, value.lastIndexOf(">"))
+                                .split(Pattern.quote("^^xsd:"))[1]   ;
+      }
+      return null ;
+   }
      
     /**
      * Main client program
@@ -206,17 +229,17 @@ public class Main_1_17 {
         System.out.println(" q    =  " + q)        ;
         
         if( nbParams < 6 ) {
-             System.out.println(" Nombre paramètres incomplet !! ") ;
-             return ;
+           System.out.println(" Nombre paramètres incomplet !! ") ;
+           return ;
         }
         
         Main_1_17 ontop   =  new Main_1_17 ( owlFile, obdaFile ) ;
        
-        if(!existQuery) q = defaultSparqlQuery ;
+        if(!existQuery) q = defaultSparqlQuery                   ;
                 
-        Writer.checkFile(outFile) ;
+        Writer.checkFile(outFile)                                ;
         
-        ontop.run(q, outFile ) ;
+        ontop.run(q, outFile )                                   ;
         
     }
 }
