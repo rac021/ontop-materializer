@@ -31,12 +31,10 @@ public class Main_1_17 {
     private final OWLOntology ontology   ;
     private final OBDAModel   obdaModel  ;
     
-    
     private final String DATATYPE      = "^^xsd:string";
     private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>" ;
     private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
-    
     private Main_1_17 (String owlFile, String obdaFile) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
         obdaModel  = loadOBDA(obdaFile) ;
