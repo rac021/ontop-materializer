@@ -198,7 +198,7 @@ public class Main_1_17 {
        int nbParams = 0 ;
        
         if( args.length < 6 ) {
-             System.out.println(" Nombre paramètres incomplet ! ") ;
+             System.out.println(" Missing parameters !! ") ;
              return ;
         }
             
@@ -225,7 +225,7 @@ public class Main_1_17 {
         System.out.println(" q    =  " + q)        ;
         
         if( nbParams < 6 ) {
-           System.out.println(" Nombre paramètres incomplet !! ") ;
+           System.out.println(" Missing parameters !! ") ;
            return ;
         }
         
