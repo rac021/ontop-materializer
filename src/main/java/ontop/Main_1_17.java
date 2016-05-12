@@ -178,7 +178,7 @@ public class Main_1_17 {
          value.endsWith(">")     && 
          value.contains("^^xsd:")) {
          return "^^xsd:" + value.substring(1, value.lastIndexOf(">"))
-                                .split(Pattern.quote("^^xsd:"))[1]   ;
+                                .split(Pattern.quote("^^xsd:"))[1]  ;
       }
       return null ;
    }
