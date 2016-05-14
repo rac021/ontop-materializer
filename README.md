@@ -18,7 +18,8 @@ Steps :
    `-q    :  Sparql Query ( Not Required ) Default "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " `
    
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
-             ` if -ttl, Query must contains exactly 3 variables `
+              
+ * If -ttl, Query must contains exactly 3 variables. 
    
   3 - Exp 
   
