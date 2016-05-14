@@ -43,7 +43,7 @@ public class Main_1_17 {
         obdaModel  = loadOBDA(obdaFile)       ;
     }
     
-    public void run( String query, String outputFile , Boolean turtleFormat ) throws Exception {
+    public void run( String query, String outputFile , Boolean turtleOut ) throws Exception       {
 
         QuestPreferences preference = new QuestPreferences() ;
         preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_MAPPINGS, QuestConstants.TRUE)  ;
@@ -78,6 +78,14 @@ public class Main_1_17 {
             int           loop       =  0                   ;
             int           columnSize =  rs.getColumnCount() ;
 
+            if( turtleOut && columnSize != 3 ) {
+                System.out.print  (" Query must have exactly 3 variables ( subject, predicate, object ) " ) ;
+                System.out.println(" when Tuttle format is activated (-ttl ) " )                            ;
+                System.out.println(" See https://www.w3.org/TR/turtle  " )                                  ;
+                System.out.println(" Or try without -ttl parameter " )                                      ; 
+                return ;
+            }
+        
             while (rs.nextRow()) {
                 
                 line.clear() ;
@@ -89,7 +97,7 @@ public class Main_1_17 {
                     line.add(binding.toString())             ;
                 }
                 
-                if( turtleFormat ) {
+                if( turtleOut ) {
 
                     line = turtleAdapt (line)                ;
                 }
@@ -231,7 +239,7 @@ public class Main_1_17 {
                                     break ;
                     case "-out"  :  outFile   = args[i+1]  ;
                                     break ;
-                    case "-T"    :  turtleOut = true       ;
+                    case "-ttl"  :  turtleOut = true       ;
                                     break ;
                     case "-q"    :  q = args[i+1]          ;  
                                     existQuery = true      ;
