@@ -1,7 +1,7 @@
 <h4>ontop-materializer based on version 1.17.1</h4>
 ===============
 
-Materialize triples from database using : Ontop-Quest API + ODBA file + Ontology.
+Materialize triples from database using : Ontop-Quest API + ODBA file + Ontology .
 
 Steps : 
 
@@ -19,7 +19,7 @@ Steps :
    
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
               
- - If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ). 
+ - If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ) . 
    
 3 - Exp 
   
