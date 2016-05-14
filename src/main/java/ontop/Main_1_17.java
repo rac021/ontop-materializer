@@ -114,7 +114,7 @@ public class Main_1_17 {
                         o = URLEncoder.encode(o)   ;
                     else 
                     {
-                        String xsdType = getXSDType(o);
+                        String xsdType = getXSDType(o) ;
                         if(xsdType != null ) {
                             o = "\"" + URLDecoder.decode( o.substring( 1, o.lastIndexOf(">"))
                                            .split(Pattern.quote("^^xsd:"))[0] , 
