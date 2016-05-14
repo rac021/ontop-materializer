@@ -34,8 +34,9 @@ Steps :
     java  -Xms1 024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
-     -out  './ontopMaterializedTriples.nt'                                                             \
- 
+     -out  './ontopMaterializedTriples.nt'                                                             
+
+    # Custom Query
     java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17  \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
@@ -43,6 +44,7 @@ Steps :
      -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                        \
 
    # Error in the following example ( because -ttl is specified and number of parameters in Query != 3 ) 
+   
     java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17  \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
