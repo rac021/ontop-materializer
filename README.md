@@ -19,8 +19,7 @@ Steps :
    
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
 
-<span style="color:orange;">If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ) .</span> 
- * [markdown-it](https://github.com/markdown-it/markdown-it) for Markdown parsing
+**If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ) .**
     
 3 - Exp 
   
