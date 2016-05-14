@@ -20,7 +20,7 @@ Steps :
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
 
 <span style="color:orange;">If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ) .</span> 
-  Roses are <span style="color:red; font-family:Georgia; font-size:2em;">red.</span>
+Roses are <span style="color:red">red</span>, violets are <span style="color:blue">blue</span>.
 3 - Exp 
   
      java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
