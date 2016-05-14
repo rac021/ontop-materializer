@@ -254,19 +254,19 @@ public class Main_1_17 {
         System.out.println(" outFormat  =  " + turtleOut ) ;
         
         if( owlFile.isEmpty() || obdaFile.isEmpty() || outFile.isEmpty() ) {
-           System.out.println(" Missing parameters !! ")         ;
-           return                                                ;
+           System.out.println(" Missing parameters !! ")   ;
+           return                                          ;
         }
         
         if( !existQuery ) {
-            q         = defaultSparqlQuery                       ;
-            turtleOut = true                                     ;
+            q         = defaultSparqlQuery                 ;
+            turtleOut = true                               ;
         }
                 
-        Writer.checkFile( outFile )                              ;
+        Writer.checkFile( outFile )                             ;
         
-        Main_1_17 ontop  = new Main_1_17 ( owlFile, obdaFile )   ;
-        ontop.run( q, outFile , turtleOut )                      ;
+        Main_1_17 ontop  = new Main_1_17 ( owlFile, obdaFile )  ;
+        ontop.run( q, outFile , turtleOut )                     ;
         
     }
 }
