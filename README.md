@@ -16,7 +16,10 @@ Steps :
    `-out  :  output path file ( Required ) ` 
     
    `-q    :  Sparql Query ( Not Required ) Default "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " `
-    
+   
+   `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
+           ` If -ttl, Query must contains exactly 3 variables `
+   
   3 - Exp 
   
      java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
