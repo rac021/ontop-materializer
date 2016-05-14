@@ -65,10 +65,10 @@ public class Main_1_17 {
          * Prepare the data connection for querying.
          */
         try (
-              QuestOWL reasoner       = factory.createReasoner(ontology, config);
+              QuestOWL reasoner       = factory.createReasoner(ontology, config) ;
               QuestOWLConnection conn = reasoner.getConnection() ;
-              QuestOWLStatement st    = conn.createStatement()   ;
-              QuestOWLResultSet rs    = st.executeTuple(query)   ;
+              QuestOWLStatement  st   = conn.createStatement()   ;
+              QuestOWLResultSet  rs   = st.executeTuple(query)   ;
         )
         {
             List<String> lines = new ArrayList<>() ;
