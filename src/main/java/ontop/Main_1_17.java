@@ -190,7 +190,7 @@ public class Main_1_17 {
    }
    
    private boolean valideXSD( String xsd ) {
-       return XSD.contains(xsd);
+       return XSD.contains(xsd) ;
    }
      
     /**
