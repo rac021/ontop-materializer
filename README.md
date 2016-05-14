@@ -20,7 +20,9 @@ Steps :
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
 
 <span style="color:orange;">If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ) .</span> 
-
+ #!/usr/bin/python
+    import abc
+    
 3 - Exp 
   
      java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
