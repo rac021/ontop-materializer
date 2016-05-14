@@ -20,8 +20,7 @@ Steps :
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
 
 <span style="color:orange;">If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ) .</span> 
- #!/usr/bin/python
-    import abc
+ * [markdown-it](https://github.com/markdown-it/markdown-it) for Markdown parsing
     
 3 - Exp 
   
