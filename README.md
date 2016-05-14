@@ -21,7 +21,7 @@ Steps :
               
  - If -ttl, Query must contains exactly 3 variables . 
    
-  3 - Exp 
+ 3 - Exp 
   
      java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
      -owl  'ontology.owl'                                                                              \
