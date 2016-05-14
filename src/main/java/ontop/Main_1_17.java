@@ -223,14 +223,14 @@ public class Main_1_17 {
           
        final String defaultSparqlQuery =  "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " ;
 
-       String owlFile = "", obdaFile = "", outFile = "", q = "" ;
+       String owlFile = "", obdaFile = "", outFile = "", q = ""  ;
        
-       Boolean turtleOut = false ;
-       
-        boolean existQuery = false ;
+       boolean turtleOut  = false                                ;
+       boolean existQuery = false                                ;
+        
         for ( int i = 0 ; i < args.length ; i++ ) {
             
-            String token = args[i];
+            String token = args[i]                         ;
            
             switch ( token ) {
                     case "-owl"  :  owlFile   = args[i+1]  ;
