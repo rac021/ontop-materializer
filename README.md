@@ -19,7 +19,7 @@ Steps :
    
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
               
- - If -ttl, Query must contains exactly 3 variables . 
+ - If -ttl is specified, Query must contains exactly 3 variables  ( S, P, O ). 
    
 3 - Exp 
   
@@ -27,11 +27,26 @@ Steps :
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
      -out  './ontopMaterializedTriples.nt'                                                             \
-     -q    " SELECT ?S ?P ?O { ?S ?P ?O } "
-
-     java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
+     -q    " SELECT ?S ?P ?O { ?S ?P ?O } "                                                            \
+     -ttl
+     
+    # SELECT ALL triples and output in turtle format :
+    java  -Xms1 024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
-     -out  './ontopMaterializedTriples.nt'
-     
+     -out  './ontopMaterializedTriples.nt'                                                             \
+ 
+    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17  \
+     -owl  'ontology.owl'                                                                              \
+     -obda 'ontology.obda'                                                                             \
+     -out  './ontopMaterializedTriples.nt'                                                             \
+     -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                        \
 
+   # Error in the following example ( because -ttl is specified and number of parameters in Query != 3 ) 
+    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17  \
+     -owl  'ontology.owl'                                                                              \
+     -obda 'ontology.obda'                                                                             \
+     -out  './ontopMaterializedTriples.nt'                                                             \
+     -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                        \
+     -ttl
+     
