@@ -43,7 +43,7 @@ Steps :
      -out  './ontopMaterializedTriples.nt'                                                             \
      -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                        \
 
-    # Error in the following example ( because -ttl is specified and number of parameters in Query != 3 ) 
+    # Error in the following exp    ( because -ttl is specified and number of parameters in Query != 3 ) 
     java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17  \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
