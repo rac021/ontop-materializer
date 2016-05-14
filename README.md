@@ -19,7 +19,7 @@ Steps :
    
    `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
               
-   - If -ttl, Query must contains exactly 3 variables. 
+ - If -ttl, Query must contains exactly 3 variables. 
    
   3 - Exp 
   
