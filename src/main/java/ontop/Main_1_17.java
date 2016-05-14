@@ -1,28 +1,28 @@
 
 package ontop;
 
-import java.io.File;
-import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.net.URLDecoder;
-import java.util.regex.Pattern;
-import it.unibz.krdb.obda.model.OBDAModel;
-import it.unibz.krdb.obda.io.ModelIOManager;
-import org.semanticweb.owlapi.model.OWLObject;
-import org.semanticweb.owlapi.model.OWLOntology;
-import it.unibz.krdb.obda.model.OBDADataFactory;
-import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import it.unibz.krdb.obda.model.impl.OBDADataFactoryImpl;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWL;
-import it.unibz.krdb.obda.owlrefplatform.core.QuestConstants;
-import it.unibz.krdb.obda.owlrefplatform.core.QuestPreferences;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLFactory;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLStatement;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLResultSet;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConnection;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConfiguration;
+import java.io.File ;
+import java.util.List ;
+import java.util.Arrays ;
+import java.util.ArrayList ;
+import java.net.URLDecoder ;
+import java.util.regex.Pattern ;
+import it.unibz.krdb.obda.model.OBDAModel ;
+import it.unibz.krdb.obda.io.ModelIOManager ;
+import org.semanticweb.owlapi.model.OWLObject ;
+import org.semanticweb.owlapi.model.OWLOntology ;
+import it.unibz.krdb.obda.model.OBDADataFactory ;
+import org.semanticweb.owlapi.apibinding.OWLManager ;
+import org.semanticweb.owlapi.model.OWLOntologyManager ;
+import it.unibz.krdb.obda.model.impl.OBDADataFactoryImpl ;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWL ;
+import it.unibz.krdb.obda.owlrefplatform.core.QuestConstants ;
+import it.unibz.krdb.obda.owlrefplatform.core.QuestPreferences ;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLFactory ;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLStatement ;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLResultSet ;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConnection ;
+import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConfiguration ;
 
 public class Main_1_17 {
  
@@ -44,14 +44,14 @@ public class Main_1_17 {
     
     public void run( String query, String outputFile ) throws Exception {
 
-        QuestPreferences preference = new QuestPreferences();
-        preference.setCurrentValueOf(QuestPreferences.ABOX_MODE, QuestConstants.VIRTUAL) ;
-        preference.setCurrentValueOf(QuestPreferences.REWRITE, "true") ;
+        QuestPreferences preference = new QuestPreferences() ;
         preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_MAPPINGS, QuestConstants.TRUE)  ;
         preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_ONTOLOGY, QuestConstants.TRUE)  ;
         preference.setCurrentValueOf(QuestPreferences.REFORMULATION_TECHNIQUE, QuestConstants.TW) ;
-	preference.setCurrentValueOf(QuestPreferences.OPTIMIZE_EQUIVALENCES, "true") ;
-	preference.setCurrentValueOf(QuestPreferences.DBTYPE, QuestConstants.SEMANTIC_INDEX) ; 
+        preference.setCurrentValueOf(QuestPreferences.DBTYPE, QuestConstants.SEMANTIC_INDEX) ; 
+        preference.setCurrentValueOf(QuestPreferences.ABOX_MODE, QuestConstants.VIRTUAL) ;
+        preference.setCurrentValueOf(QuestPreferences.OPTIMIZE_EQUIVALENCES, "true") ;
+        preference.setCurrentValueOf(QuestPreferences.REWRITE, "true") ;
 
         /*
          * Create the instance of Quest OWL reasoner.
