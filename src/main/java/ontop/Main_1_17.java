@@ -166,7 +166,6 @@ public class Main_1_17 {
         return line ;
     }
     
-    
     private OBDAModel loadOBDA(String obdaFile) throws Exception {
         OBDADataFactory factory        = OBDADataFactoryImpl.getInstance()  ;
         OBDAModel       localobdaModel = factory.getOBDAModel()             ;
