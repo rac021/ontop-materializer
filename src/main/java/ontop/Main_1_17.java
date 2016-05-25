@@ -252,6 +252,7 @@ public class Main_1_17 {
         System.out.println(" out        =  " + outFile )   ;
         System.out.println(" q          =  " + q )         ;
         System.out.println(" TurtleOut  =  " + turtleOut ) ;
+        System.out.println("                           " ) ;
         
         if( owlFile.isEmpty() || obdaFile.isEmpty() || outFile.isEmpty() ) {
            System.out.println(" Missing parameters !! ")   ;
