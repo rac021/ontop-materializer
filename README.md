@@ -9,15 +9,15 @@ Steps :
  
  2 - Args 
  
-   `-owl  :  owl path file ( Required ) ` 
+   `-owl  :  owl path file. ( Required ) ` 
     
-   `-odba :  Mapping file ( Required ) ` 
+   `-odba :  Mapping file. ( Required ) ` 
     
-   `-out  :  output path file ( Required ) ` 
+   `-out  :  output path file. ( Required ) ` 
     
-   `-q    :  Sparql Query ( Not Required ) Default "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " `
+   `-q    :  Sparql Query. ( Not Required ) Default "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " `
    
-   `-ttl  :  Activate output turtle format ( Not Required ). Default : FALSE ` 
+   `-ttl  :  Activate output turtle format. ( Not Required ). Default : FALSE ` 
 
    **if -ttl is specified, Query must contain exactly 3 variables  ( S, P, O ) .**
     
