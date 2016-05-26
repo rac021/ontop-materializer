@@ -1,6 +1,5 @@
 <h4>ontop-materializer based on version 1.17.1</h4>
 ===============
-
 Materialize triples from database using : Ontop-Quest API + ODBA file + Ontology .
 
 Steps : 
