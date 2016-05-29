@@ -1,4 +1,4 @@
-<h4>Ontop-materializer Version 1.17.1 </h4>
+<h4>Ontop-materializer Version 1.18.0 </h4>
 -----------------
 
 Materialize triples from database using : Ontop-Quest API + ODBA file + Ontology .
@@ -23,7 +23,7 @@ Steps :
     
 3 - Exp 
   
-     java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
+     java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
      -out  './ontopMaterializedTriples.nt'                                                             \
@@ -31,20 +31,20 @@ Steps :
      -ttl
      
     # SELECT ALL triples and output in turtle format :
-    java  -Xms1 024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17 \
+    java  -Xms1 024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
      -out  './ontopMaterializedTriples.nt'                                                             
 
     # Custom Query :
-    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17  \
+    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18  \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
      -out  './ontopMaterializedTriples.nt'                                                             \
      -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                        \
 
     # Error in the following exp  (  because  -ttl  is specified and number of variables in Query != 3 ) 
-    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.17.0-jar-with-dependencies.jar ontop.Main_1_17  \
+    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18  \
      -owl  'ontology.owl'                                                                              \
      -obda 'ontology.obda'                                                                             \
      -out  './ontopMaterializedTriples.nt'                                                             \
