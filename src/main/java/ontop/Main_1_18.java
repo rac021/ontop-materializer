@@ -25,7 +25,7 @@ import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLStatement;
 import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConnection;
 import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConfiguration;
 
-public class Main_1_17 {
+public class Main_1_18 {
  
     private final int flushCount = 10000 ;
 
@@ -38,7 +38,7 @@ public class Main_1_17 {
 
     private final List<String> XSD     = Arrays.asList( "string", "integer", "decimal","double", "dateTime", "boolean" )           ;
     
-    private Main_1_17 (String owlFile, String obdaFile) throws Exception {
+    private Main_1_18 (String owlFile, String obdaFile) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
         obdaModel  = loadOBDA(obdaFile)       ;
     }
@@ -266,7 +266,7 @@ public class Main_1_17 {
                 
         Writer.checkFile( outFile )                             ;
         
-        Main_1_17 ontop  = new Main_1_17 ( owlFile, obdaFile )  ;
+        Main_1_18 ontop  = new Main_1_18 ( owlFile, obdaFile )  ;
         ontop.run( q, outFile , turtleOut )                     ;
         
     }
