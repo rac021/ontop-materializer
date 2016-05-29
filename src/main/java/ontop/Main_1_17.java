@@ -7,23 +7,23 @@ import java.util.Arrays ;
 import java.util.ArrayList ;
 import java.net.URLDecoder ;
 import java.util.regex.Pattern ;
-import it.unibz.krdb.obda.model.OBDAModel ;
-import it.unibz.krdb.obda.io.ModelIOManager ;
+import it.unibz.inf.ontop.model.OBDAModel;
+import it.unibz.inf.ontop.io.ModelIOManager;
 import java.io.UnsupportedEncodingException ;
 import org.semanticweb.owlapi.model.OWLObject ;
+import it.unibz.inf.ontop.model.OBDADataFactory;
 import org.semanticweb.owlapi.model.OWLOntology ;
-import it.unibz.krdb.obda.model.OBDADataFactory ;
 import org.semanticweb.owlapi.apibinding.OWLManager ;
 import org.semanticweb.owlapi.model.OWLOntologyManager ;
-import it.unibz.krdb.obda.model.impl.OBDADataFactoryImpl ;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWL ;
-import it.unibz.krdb.obda.owlrefplatform.core.QuestConstants ;
-import it.unibz.krdb.obda.owlrefplatform.core.QuestPreferences ;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLFactory ;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLStatement ;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLResultSet ;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConnection ;
-import it.unibz.krdb.obda.owlrefplatform.owlapi3.QuestOWLConfiguration ;
+import it.unibz.inf.ontop.model.impl.OBDADataFactoryImpl;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWL;
+import it.unibz.inf.ontop.owlrefplatform.core.QuestConstants;
+import it.unibz.inf.ontop.owlrefplatform.core.QuestPreferences;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLFactory;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLResultSet;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLStatement;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConnection;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConfiguration;
 
 public class Main_1_17 {
  
