@@ -6,9 +6,9 @@ oboe-core:	http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#
 
 [SourceDeclaration]
 sourceUri	dbLacsMapping
-connectionUrl	jdbc:postgresql://127.0.0.1/ola?sendBufferSize=5000
-username	ryahiaoui
-password	yahiaoui
+connectionUrl	jdbc:postgresql://127.0.0.1/anaee_db?sendBufferSize=5000
+username	anaee_user
+password	anaee_db
 driverClass	org.postgresql.Driver
 
 [MappingDeclaration] @collection [[
