@@ -15,8 +15,8 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#">
     <owl:Ontology rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology">
-        <webprotege:revision rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3329</webprotege:revision>
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">9 juin 2016 13:47:00</dc:date>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">17 juin 2016 11:49:59</dc:date>
+        <webprotege:revision rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3376</webprotege:revision>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Basée sur OBOE
 Fusion des onto VSoil et OLA
 juin2015</rdfs:comment>
@@ -1263,14 +1263,14 @@ Common derivatives are millibar (meteorology) and decibar (oceanography)</rdfs:c
     <owl:Class rdf:about="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#HectopascalToPascal">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2470,13 +2470,13 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Watt"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Watt"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2488,7 +2488,7 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2627,6 +2627,15 @@ a siemens is Ampere/volt</rdfs:comment>
     <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#Altitude">
         <rdfs:label xml:lang="en">Altitude</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#SpatialCharacteristic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#AltitudeRelativeToGround -->
+
+    <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#AltitudeRelativeToGround">
+        <rdfs:label xml:lang="en">Altitude Relative To Ground</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Altitude"/>
     </owl:Class>
     
 
@@ -3132,14 +3141,14 @@ a siemens is Ampere/volt</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
+                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Day"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
-                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Day"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3196,8 +3205,8 @@ a siemens is Ampere/volt</rdfs:comment>
     <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#DepthRelativeToSurface -->
 
     <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#DepthRelativeToSurface">
-        <rdfs:label>DepthRelativeToSurface</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-characteristics.owl#Length"/>
+        <rdfs:label>Depth Relative To Surface</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Altitude"/>
     </owl:Class>
     
 
@@ -3477,14 +3486,14 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeCharacteristicQualifier"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasNextQualifier"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Average"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasBaseQualifier"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#HalfHourly"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasBaseQualifier"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#HalfHourly"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasNextQualifier"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Average"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3647,8 +3656,8 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>J</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3674,13 +3683,33 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Meter"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
+                                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</owl:hasValue>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilogram"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>J</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3699,26 +3728,6 @@ a siemens is Ampere/volt</rdfs:comment>
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Meter"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
-                                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</owl:hasValue>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3733,19 +3742,13 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Joule"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>J.cm-2</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3768,6 +3771,12 @@ a siemens is Ampere/volt</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
+                <owl:hasValue>J.cm-2</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3785,8 +3794,8 @@ a siemens is Ampere/volt</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.01</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#JoulePerCentimeterSquared"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3797,8 +3806,8 @@ a siemens is Ampere/volt</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#JoulePerCentimeterSquared"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.01</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3813,8 +3822,8 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>J.kg-1.K-1</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3839,8 +3848,8 @@ a siemens is Ampere/volt</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
+                <owl:hasValue>J.kg-1.K-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3893,14 +3902,14 @@ a siemens is Ampere/volt</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>J.m-2</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
+                <owl:hasValue>J.m-2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3924,18 +3933,6 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilogram"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>kg.kg-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#standardFor"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -3948,6 +3945,12 @@ a siemens is Ampere/volt</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilogram"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3976,6 +3979,12 @@ a siemens is Ampere/volt</rdfs:comment>
                 <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>kg.kg-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3990,6 +3999,12 @@ a siemens is Ampere/volt</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
                 <owl:hasValue>kg.kg-1.s-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilogram"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4010,12 +4025,6 @@ a siemens is Ampere/volt</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilogram"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4106,8 +4115,8 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>kg.mol-1</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilogram"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4132,14 +4141,14 @@ a siemens is Ampere/volt</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>kg.mol-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilogram"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4155,8 +4164,8 @@ a siemens is Ampere/volt</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>km.h-1</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilometer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4187,8 +4196,8 @@ a siemens is Ampere/volt</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kilometer"/>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
+                <owl:hasValue>km.h-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4420,14 +4429,8 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>MJ.m-2</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Megajoule"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4453,7 +4456,13 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Megajoule"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
+                <owl:hasValue>MJ.m-2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4475,6 +4484,12 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -4490,12 +4505,6 @@ utiliser une règle de décision</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4517,12 +4526,6 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -4543,13 +4546,19 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#MeterCubed"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#MeterCubed"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4568,12 +4577,6 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:label xml:lang="en">meter cubed per meter cubed</rdfs:label>
         <rdfs:label xml:lang="fr">mètre cube par mètre cube</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
@@ -4598,6 +4601,12 @@ utiliser une règle de décision</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4649,7 +4658,7 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4660,14 +4669,14 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>m3.m-2</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>m3.m-2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4736,8 +4745,8 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#KilometerPerHour"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4748,8 +4757,8 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#KilometerPerHour"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4769,8 +4778,8 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
-                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#MeterPerSecond"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">86400000</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4781,8 +4790,8 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">86400000</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
+                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#MeterPerSecond"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4802,6 +4811,12 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#MillimeterPerHour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
                 <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#MeterPerSecond"/>
             </owl:Restriction>
@@ -4810,12 +4825,6 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#MillimeterPerHour"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4851,6 +4860,18 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>m2.m-2</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -4868,18 +4889,6 @@ utiliser une règle de décision</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>m2.m-2</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4892,20 +4901,14 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>m2.s-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>m2.s-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4926,6 +4929,12 @@ utiliser une règle de décision</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4956,8 +4965,8 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>mm.d-1</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Millimeter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4982,14 +4991,14 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
+                <owl:hasValue>mm.d-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Millimeter"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5003,6 +5012,12 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:label xml:lang="fr">millimètre par heure</rdfs:label>
         <rdfs:label xml:lang="fr-climatik">millimètres/heure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Millimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
@@ -5027,12 +5042,6 @@ utiliser une règle de décision</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Millimeter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5222,14 +5231,8 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>mol.kg-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Mole"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5254,8 +5257,14 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>mol.kg-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Mole"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5271,7 +5280,7 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Mole"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5282,14 +5291,8 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>mol.kg-1.s-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Mole"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5312,6 +5315,12 @@ utiliser une règle de décision</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>mol.kg-1.s-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -5322,6 +5331,30 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:label xml:lang="en">mole per meter cubed per second</rdfs:label>
         <rdfs:label xml:lang="fr">mole par mètre cube par seconde</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Mole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>mol.m-3.s-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
@@ -5342,30 +5375,6 @@ utiliser une règle de décision</rdfs:comment>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>mol.m-3.s-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Mole"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -5384,14 +5393,14 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>mol.m-2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>mol.m-2</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5413,18 +5422,6 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5438,6 +5435,18 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
                 <owl:hasValue>mol.m-2.s-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMeterSquared"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5551,12 +5560,6 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Number"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#standardFor"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -5569,12 +5572,6 @@ utiliser une règle de décision</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>number.m-3</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5599,12 +5596,6 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#standardFor"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -5617,6 +5608,24 @@ utiliser une règle de décision</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
+                <owl:hasValue>number.m-3</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Number"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5637,18 +5646,6 @@ utiliser une règle de décision</rdfs:comment>
 
     <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#OLA_CentimeterSquarePerGram">
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>cm2.g-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
@@ -5672,6 +5669,12 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -5687,6 +5690,12 @@ utiliser une règle de décision</rdfs:comment>
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>cm2.g-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6034,6 +6043,12 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Day"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-1</owl:hasValue>
             </owl:Restriction>
@@ -6042,12 +6057,6 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
                 <owl:hasValue>d-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Day"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6088,6 +6097,12 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
                 <owl:hasValue>K-1</owl:hasValue>
             </owl:Restriction>
@@ -6096,12 +6111,6 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Kelvin"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-1</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6115,12 +6124,6 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>m-2</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-2</owl:hasValue>
             </owl:Restriction>
@@ -6129,6 +6132,12 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Meter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
+                <owl:hasValue>m-2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6142,12 +6151,6 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Minute"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-1</owl:hasValue>
             </owl:Restriction>
@@ -6156,6 +6159,12 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
                 <owl:hasValue>min-1</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Minute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6169,6 +6178,12 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Second"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
                 <owl:hasValue>s-1</owl:hasValue>
             </owl:Restriction>
@@ -6177,12 +6192,6 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Second"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6196,8 +6205,8 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#UnitConversion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalDay"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">86400</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6208,14 +6217,14 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">86400</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalDay"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6229,14 +6238,8 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#UnitConversion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3600</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6247,8 +6250,14 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3600</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasOffset"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6262,8 +6271,14 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#UnitConversion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMinute"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6274,14 +6289,8 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasMultiplier"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasTargetUnit"/>
-                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalMinute"/>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasSourceUnit"/>
+                <owl:allValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6326,15 +6335,6 @@ utiliser une règle de décision</rdfs:comment>
     <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#RelativeHumidity">
         <rdfs:label xml:lang="en">relative humidity</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-characteristics.owl#Proportion"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#RelativeToGroundAltitude -->
-
-    <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#RelativeToGroundAltitude">
-        <rdfs:label>Relative To Ground Altitude</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Altitude"/>
     </owl:Class>
     
 
@@ -6404,12 +6404,6 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Second"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
                 <owl:hasValue>s.m-1</owl:hasValue>
             </owl:Restriction>
@@ -6417,13 +6411,19 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#ReciprocalMeter"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Second"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#ReciprocalMeter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -7082,6 +7082,12 @@ utiliser une règle de décision</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
                 <owl:hasValue>W</owl:hasValue>
             </owl:Restriction>
@@ -7090,12 +7096,6 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#ReciprocalSecond"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -7108,6 +7108,12 @@ utiliser une règle de décision</rdfs:comment>
         <rdfs:label xml:lang="en">watt per meter per kelvin</rdfs:label>
         <rdfs:label xml:lang="fr">watt par mètre par kelvin</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
+                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#ReciprocalMeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
@@ -7138,12 +7144,6 @@ utiliser une règle de décision</rdfs:comment>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
                 <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#ReciprocalMeter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7221,27 +7221,6 @@ utiliser une règle de décision</rdfs:comment>
     
 
 
-    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#microsiemensPerMeter -->
-
-    <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#microsiemensPerMeter">
-        <rdfs:label>microsiemens per meter</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#CompositeUnit"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>S.m-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSISymbol"/>
-                <owl:hasValue>μS.m-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
     <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#pE -->
 
     <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#pE">
@@ -7276,52 +7255,6 @@ utiliser une règle de décision</rdfs:comment>
     <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#pHUnit">
         <rdfs:label xml:lang="en">pH Unit</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Index"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#%27MicrosiemensPerMeter%27 -->
-
-    <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#%27MicrosiemensPerMeter%27">
-        <rdfs:label>&apos;Microsiemens Per Meter&apos;</rdfs:label>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#MicroSiemens"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasSymbol"/>
-                <owl:hasValue>μS.m-1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#DerivedUnit"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasUnit"/>
-                                <owl:allValuesFrom rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-standards.owl#Meter"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#hasPower"/>
-                                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-1</owl:hasValue>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -7401,6 +7334,26 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
     
 
 
+    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#DefaultBourgetLakePlot -->
+
+    <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#DefaultBourgetLakePlot">
+        <rdf:type rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Anaee-franceExperimentalPlotNamingStandard"/>
+        <rdfs:label xml:lang="en">Default Bourget Lake Plot</rdfs:label>
+        <rdfs:label xml:lang="fr">Plateforme par défaut du lac du Bourget</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#DefaultGenevaLakePlot -->
+
+    <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#DefaultGenevaLakePlot">
+        <rdf:type rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Anaee-franceExperimentalPlotNamingStandard"/>
+        <rdfs:label xml:lang="en">Default Geneva Lake Plot</rdfs:label>
+        <rdfs:label xml:lang="fr">Plateforme par défaut du lac Léman</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#DissolvedAmmoniumNitrogenMassConcentration -->
 
     <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#DissolvedAmmoniumNitrogenMassConcentration">
@@ -7452,6 +7405,16 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
     
 
 
+    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#PerchSpawningArea -->
+
+    <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#PerchSpawningArea">
+        <rdf:type rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Anaee-franceExperimentalPlotNamingStandard"/>
+        <rdfs:label xml:lang="en">Perch Spawning Area</rdfs:label>
+        <rdfs:label xml:lang="fr">Frayère perche</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#PetitLacPlatform -->
 
     <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#PetitLacPlatform">
@@ -7493,6 +7456,36 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
     <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#Shl2Platform">
         <rdf:type rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Anaee-franceExperimentalPlotNamingStandard"/>
         <rdfs:label>Shl2 Platform</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#ShlBanks -->
+
+    <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#ShlBanks">
+        <rdf:type rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Anaee-franceExperimentalPlotNamingStandard"/>
+        <rdfs:label xml:lang="en">Shl Banks</rdfs:label>
+        <rdfs:label xml:lang="fr">Rives SHL</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#ShlHarbour -->
+
+    <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#ShlHarbour">
+        <rdf:type rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Anaee-franceExperimentalPlotNamingStandard"/>
+        <rdfs:label xml:lang="en">Shl Harbour</rdfs:label>
+        <rdfs:label xml:lang="fr">Port SHL</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.anaee-france.fr/ontology/anaee-france_ontology#ShlPier -->
+
+    <owl:NamedIndividual rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#ShlPier">
+        <rdf:type rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Anaee-franceExperimentalPlotNamingStandard"/>
+        <rdfs:label xml:lang="en">SHL Pier</rdfs:label>
+        <rdfs:label xml:lang="fr">Jetée SHL</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -8529,22 +8522,43 @@ basic geo vocab
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
-        <swrl:body>
+        <swrl:head>
             <rdf:Description>
                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Observation"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#o"/>
+                        <swrl:classPredicate rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Inout"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#e"/>
                     </rdf:Description>
                 </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasModellingInput"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#o"/>
+                            </rdf:Description>
+                        </rdf:first>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Observation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                    </rdf:Description>
+                                </rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
@@ -8559,40 +8573,19 @@ basic geo vocab
                                         </rdf:first>
                                     </rdf:Description>
                                 </rdf:rest>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Observation"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
-                                    </rdf:Description>
-                                </rdf:first>
                             </rdf:Description>
                         </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasModellingOutput"/>
-                                <swrl:argument2 rdf:resource="urn:swrl#c"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#o"/>
-                            </rdf:Description>
-                        </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Inout"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#e"/>
+                        <swrl:classPredicate rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Observation"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#o"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>
-        </swrl:head>
+        </swrl:body>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
@@ -8609,16 +8602,17 @@ basic geo vocab
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasModellingOutput"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#o"/>
+                            </rdf:Description>
+                        </rdf:first>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Observation"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
-                                    </rdf:Description>
-                                </rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
@@ -8633,16 +8627,15 @@ basic geo vocab
                                         </rdf:first>
                                     </rdf:Description>
                                 </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Observation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                    </rdf:Description>
+                                </rdf:first>
                             </rdf:Description>
                         </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#hasModellingInput"/>
-                                <swrl:argument2 rdf:resource="urn:swrl#c"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#o"/>
-                            </rdf:Description>
-                        </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
             </rdf:Description>
