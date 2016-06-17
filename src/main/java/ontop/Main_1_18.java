@@ -36,7 +36,7 @@ public class Main_1_18 {
     private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"                                       ;
     private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;µs%°]*[-a-zA-Z0-9+&@#/%=~_|]" ;
 
-    private final List<String> XSD     = Arrays.asList( "string", "integer", "decimal","double", "dateTime", "boolean" )           ;
+    private final List<String> XSD     = Arrays.asList( "string", "integer", "decimal","double", "dateTime", "date", "time", "duration", "boolean" ) ;
     
     private Main_1_18 (String owlFile, String obdaFile) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
