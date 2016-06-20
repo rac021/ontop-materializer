@@ -1,7 +1,7 @@
 <h4>Ontop-materializer Version 1.18.0 </h4>
 -----------------
 
-Materialize triples from database using : Ontop-Quest API + ODBA file + Ontology .
+Materialize triples from database using : Ontop-Quest API + OBDA file + Ontology .
 
 Steps : 
 
