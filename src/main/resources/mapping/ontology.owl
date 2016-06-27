@@ -4228,7 +4228,7 @@ As compared to the atomic OBOE approach, synthetic &apos;Variables&apos; are use
 
     <owl:Class rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#Lake">
         <rdfs:label xml:lang="en">Lake</rdfs:label>
-        <rdfs:label xml:lang="fr">Lake</rdfs:label>
+        <rdfs:label xml:lang="fr">Lac</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#AquaticEcosytem"/>
         <rdfs:subClassOf rdf:resource="http://www.anaee-france.fr/ontology/anaee-france_ontology#Place"/>
     </owl:Class>
