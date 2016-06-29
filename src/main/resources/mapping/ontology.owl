@@ -15,7 +15,7 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#">
     <owl:Ontology rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology">
-        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">22 juin 2016 16:20:07</dc:date>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-06-22T16:20:07Z</dc:date>
         <webprotege:revision rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3440</webprotege:revision>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Basée sur OBOE
 Fusion des onto VSoil et OLA
@@ -8351,7 +8351,7 @@ date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
 basic geo vocab
 
 </rdfs:comment>
-        <dc:date>$Date: 2009/04/20 15:00:30 $</dc:date>
+        <dc:date>2009-04-20</dc:date>
         <dc:title>WGS84 Geo Positioning: an RDF vocabulary</dc:title>
     </rdf:Description>
     <rdf:Description rdf:about="http://www.anaee-france.fr/ontology/anaee-france_ontology#test2Atmosphere">
