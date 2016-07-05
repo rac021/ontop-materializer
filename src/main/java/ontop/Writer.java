@@ -17,14 +17,14 @@ import java.util.List;
  */
 public class Writer {
     
-      public List<String> readTextFile(String fileName) throws IOException {
-    Path path = Paths.get(fileName);
-    return Files.readAllLines(path, StandardCharsets.UTF_8) ;
+    public List<String> readTextFile(String fileName) throws IOException {
+      Path path = Paths.get(fileName);
+      return Files.readAllLines(path, StandardCharsets.UTF_8) ;
     }
 
     public static void writeTextFile(List<String> strLines, String fileName) throws IOException {
-    Path path = Paths.get(fileName) ;
-    Files.write(path, strLines, StandardCharsets.UTF_8,  StandardOpenOption.APPEND) ;
+      Path path = Paths.get(fileName) ;
+      Files.write(path, strLines, StandardCharsets.UTF_8,  StandardOpenOption.APPEND) ;
     }
     
     public static void checkFile(String path ) throws IOException {
@@ -45,8 +45,8 @@ public class Writer {
 
     private static void checkDirectory( String directory ) throws IOException {
       
-     Path path = Paths.get(directory) ;
-     if(!Files.exists(path, new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}))
+      Path path = Paths.get(directory) ;
+       if(!Files.exists(path, new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}))
        Files.createDirectory(path) ;
     }
     
@@ -56,8 +56,8 @@ public class Writer {
    }
     
     private static void createFile( String path ) throws IOException {
-        File file = new File(path) ;
-        file.createNewFile()       ;
+      File file = new File(path) ;
+      file.createNewFile()       ;
     }
     
 }
