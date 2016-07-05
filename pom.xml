@@ -13,14 +13,43 @@
             <artifactId>ontop-quest-owlapi</artifactId>
             <version>1.18.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.1-901.jdbc4</version>
-        </dependency>
-
+        
     </dependencies>
+
+    <profiles>
+        
+        <profile>
+            <id>postgresql</id>
+            
+            <dependencies>
+                <dependency>
+                    <groupId>postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>9.1-901.jdbc4</version>
+                </dependency>
+            </dependencies>
+           
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            
+        </profile>
+       
+        <profile>
+            
+            <id>mysql</id>
+            
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>5.1.6</version>
+                </dependency>
+            </dependencies>
+            
+        </profile>
+       
+    </profiles>
 
     <build>
         
@@ -37,17 +66,17 @@
             </plugin>
             
             <plugin>
-              <artifactId>maven-assembly-plugin</artifactId>
-              <configuration>
-                <archive>
-                  <manifest>
-                    <mainClass>ontop.Main_1_18</mainClass>
-                  </manifest>
-                </archive>
-                <descriptorRefs>
-                  <descriptorRef>jar-with-dependencies</descriptorRef>
-                </descriptorRefs>
-              </configuration>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>ontop.Main_1_18</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
             </plugin>
                         
         </plugins>
