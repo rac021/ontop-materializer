@@ -271,10 +271,10 @@ public class Main_1_18 {
         Main_1_18 ontop  = new Main_1_18 ( owlFile, obdaFile )  ;
         ontop.run( q, outFile , turtleOut )                     ;
         
-        System.out.println(" ")                                            ;
-        long executionTime = System.currentTimeMillis() - startTime        ;
-        System.out.println(" Elapsed seconds : " + executionTime / 1000 )  ; 
-        System.out.println(" ")                                            ;
+        System.out.println(" ")                                                  ;
+        long executionTime = System.currentTimeMillis() - startTime              ;
+        System.out.println(" Elapsed seconds : " + executionTime / 1000 +" s" )  ; 
+        System.out.println(" ")                                                  ;
                    
     }
 }
