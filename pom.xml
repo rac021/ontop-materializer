@@ -24,9 +24,9 @@
             
             <dependencies>
                 <dependency>
-                    <groupId>com.github.alaisi.pgasync</groupId>
-                    <artifactId>postgres-async-driver</artifactId>
-                    <version>0.9</version>
+                    <groupId>postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>9.1-901.jdbc4</version>
                 </dependency>
             </dependencies>
            
