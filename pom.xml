@@ -22,11 +22,21 @@
             <id>postgresql</id>
             
             <dependencies>
+                     
+                <!--
                 <dependency>
                     <groupId>postgresql</groupId>
                     <artifactId>postgresql</artifactId>
                     <version>9.1-901.jdbc4</version>
                 </dependency>
+                -->
+                
+                <dependency>
+                    <groupId>com.github.alaisi.pgasync</groupId>
+                    <artifactId>postgres-async-driver</artifactId>
+                    <version>0.9</version>
+                </dependency>
+                  
             </dependencies>
            
             <activation>
