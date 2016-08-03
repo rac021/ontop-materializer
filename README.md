@@ -23,31 +23,40 @@ Steps :
     
 **3 - Exp**
   
-     java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
-     -owl  'ontology.owl'                                                                              \
-     -obda 'ontology.obda'                                                                             \
-     -out  './ontopMaterializedTriples.nt'                                                             \
-     -q    " SELECT ?S ?P ?O { ?S ?P ?O } "                                                            \
-     -ttl
+ ```
+ ❯  java  -Xmx2048M -cp target/ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
+    -owl  'src/main/resources/mapping/ontology.owl'                                                \
+    -obda 'src/main/resources/mapping/ontology.obda'                                               \
+    -out  './ontopMaterializedTriples.nt'                                                          \
+    -q    " SELECT ?S ?P ?O { ?S ?P ?O } "                                                         \
+    -ttl
+ ```
+ 
+ # SELECT ALL triples and output in turtle format :
      
-    # SELECT ALL triples and output in turtle format :
-    java  -Xms1 024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
-     -owl  'ontology.owl'                                                                              \
-     -obda 'ontology.obda'                                                                             \
-     -out  './ontopMaterializedTriples.nt'                                                             
-
-    # Custom Query :
-    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18  \
-     -owl  'ontology.owl'                                                                              \
-     -obda 'ontology.obda'                                                                             \
-     -out  './ontopMaterializedTriples.nt'                                                             \
-     -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                        \
-
-    # Error in the following exp  (  because  -ttl  is specified and number of variables in Query != 3 ) 
-    java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18  \
-     -owl  'ontology.owl'                                                                              \
-     -obda 'ontology.obda'                                                                             \
-     -out  './ontopMaterializedTriples.nt'                                                             \
-     -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                        \
-     -ttl
-     
+```
+ ❯  java  -Xmx2048M -cp target/ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
+    -owl  'src/main/resources/mapping/ontology.owl'                                                \
+    -obda 'src/main/resources/mapping/ontology.obda'                                               \
+    -out  './ontopMaterializedTriples.nt'                                                          \
+ ```
+ # Custom Query :
+       
+```
+ ❯  java  -Xmx2048M -cp target/ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
+    -owl  'src/main/resources/mapping/ontology.owl'                                                \
+    -obda 'src/main/resources/mapping/ontology.obda'                                               \
+    -out  './ontopMaterializedTriples.nt'                                                          \
+    -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } " 
+ ```
+ 
+ # Error in the following exp  (  because  -ttl  is specified and number of variables in Query != 3 ) 
+    
+ ```
+ ❯  java  -Xmx2048M -cp target/ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
+    -owl  'src/main/resources/mapping/ontology.owl'                                                \
+    -obda 'src/main/resources/mapping/ontology.obda'                                               \
+    -out  './ontopMaterializedTriples.nt'                                                          \
+    -q    " SELECT ?uri ?name ?location ?aria WHERE { .... } "                                     \
+    -ttl
+ ```
