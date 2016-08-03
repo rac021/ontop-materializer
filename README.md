@@ -5,9 +5,9 @@ Materialize triples from database using : Ontop-Quest API + OBDA file + Ontology
 
 Steps : 
 
- 1 - `mvn clean install assembly:single`
+ **1** - `mvn clean install assembly:single`
  
- 2 - Args 
+ **2   - Args**
  
    `-owl  :  owl path file. ( Required ) ` 
     
@@ -19,9 +19,9 @@ Steps :
    
    `-ttl  :  Activate output turtle format. ( Not Required ). Default : FALSE ` 
 
-   **Note: if -ttl is specified, Query must contain exactly 3 variables  ( S, P, O ) .**
+   *Note: if -ttl is specified, Query must contain exactly 3 variables  ( S, P, O ) .*
     
-3 - Exp 
+**3 - Exp**
   
      java  -Xms1024M -Xmx2048M -cp ontop-materializer-1.18.0-jar-with-dependencies.jar ontop.Main_1_18 \
      -owl  'ontology.owl'                                                                              \
