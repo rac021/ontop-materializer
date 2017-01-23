@@ -71,7 +71,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ontop.Main_1_18</mainClass>
+                            <mainClass>entry.ontop.Main_1_18</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

@@ -1,49 +1,56 @@
 
 package ontop ;
 
-import java.io.File ;
-import java.util.List ;
-import java.util.Arrays ;
-import java.util.ArrayList ;
-import java.net.URLDecoder ;
-import java.util.regex.Pattern ;
-import it.unibz.inf.ontop.model.OBDAModel;
-import it.unibz.inf.ontop.io.ModelIOManager;
-import java.io.UnsupportedEncodingException ;
-import org.semanticweb.owlapi.model.OWLObject ;
-import it.unibz.inf.ontop.model.OBDADataFactory;
-import org.semanticweb.owlapi.model.OWLOntology ;
-import org.semanticweb.owlapi.apibinding.OWLManager ;
-import org.semanticweb.owlapi.model.OWLOntologyManager ;
-import it.unibz.inf.ontop.model.impl.OBDADataFactoryImpl;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWL;
-import it.unibz.inf.ontop.owlrefplatform.core.QuestConstants;
-import it.unibz.inf.ontop.owlrefplatform.core.QuestPreferences;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLFactory;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLResultSet;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLStatement;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConnection;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConfiguration;
+import java.io.File                                                   ;
+import java.util.List                                                 ;
+import java.util.Arrays                                               ;
+import java.util.ArrayList                                            ;
+import java.net.URLDecoder                                            ;
+import java.util.regex.Pattern                                        ;
+import it.unibz.inf.ontop.model.OBDAModel                             ;
+import it.unibz.inf.ontop.io.ModelIOManager                           ;
+import java.io.UnsupportedEncodingException                           ;
+import org.semanticweb.owlapi.model.OWLObject                         ;
+import it.unibz.inf.ontop.model.OBDADataFactory                       ; 
+import org.semanticweb.owlapi.model.OWLOntology                       ;
+import org.semanticweb.owlapi.apibinding.OWLManager                   ;
+import org.semanticweb.owlapi.model.OWLOntologyManager                ;
+import it.unibz.inf.ontop.model.impl.OBDADataFactoryImpl              ;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWL              ;
+import it.unibz.inf.ontop.owlrefplatform.core.QuestConstants          ;
+import it.unibz.inf.ontop.owlrefplatform.core.QuestPreferences        ;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLFactory       ;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLResultSet     ;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLStatement     ;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConnection    ;
+import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConfiguration ;
 
-public class Main_1_18 {
+public class Processor {
  
-    private final int flushCount = 10000 ;
-
-    private final OWLOntology ontology   ;
-    private final OBDAModel   obdaModel  ;
+    //final int fragment = 100 ;
+    
+    private final int flushCount = 1_000_000  ;
+   
+    private final   OWLOntology ontology   ;
+    private final   OBDAModel   obdaModel  ;
     
     private final String STR_DTYPE     = "^^xsd:string"                                                                            ;
     private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"                                       ;
     private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;µs%°]*[-a-zA-Z0-9+&@#/%=~_|]" ;
 
-    private final List<String> XSD     = Arrays.asList( "string", "integer", "decimal","double", "dateTime", "date", "time", "duration", "boolean" ) ;
+    private final List<String> XSD     = Arrays.asList ( "string" , "integer"  , "decimal" ,
+                                                         "double" , "dateTime" , "date"    , 
+                                                         "time"   , "duration" , "boolean" ) ;
     
-    private Main_1_18 (String owlFile, String obdaFile) throws Exception {
+    Processor ( String owlFile, String obdaFile ) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
         obdaModel  = loadOBDA(obdaFile)       ;
     }
     
-    public void run( String query, String outputFile , Boolean turtleOut ) throws Exception       {
+    public int run( String query        , 
+                    String outputFile   , 
+                    Boolean turtleOut   , 
+                    int fragment        ) throws Exception                                        {
 
         QuestPreferences preference = new QuestPreferences() ;
         preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_MAPPINGS, QuestConstants.TRUE)  ;
@@ -57,12 +64,18 @@ public class Main_1_18 {
         /*
          * Create the instance of Quest OWL reasoner.
          */
-        QuestOWLFactory factory      = new QuestOWLFactory();
+        QuestOWLFactory factory      = new QuestOWLFactory() ;
         QuestOWLConfiguration config = QuestOWLConfiguration.builder()
                                                             .obdaModel(obdaModel)
                                                             .preferences(preference)
                                                             .build() ;
-        /*
+        
+        int     TOTAL_EXTRACTION      =  0                           ;
+        int     fragCounter           =  0                           ;
+        
+        String  currentFile           =  outputFile                  ; 
+        
+         /*
          * Prepare the data connection for querying.
          */
         try (
@@ -74,23 +87,23 @@ public class Main_1_18 {
         {
             List<String>  lines      =  new ArrayList<>()   ;
             List<String>  line       =  new ArrayList()     ;
-            
-            int           loop       =  0                   ;
-            int           columnSize =  rs.getColumnCount() ;
 
+            int           loopForFlush  =  0                   ;
+            int           columnSize    =  rs.getColumnCount() ;
+             
             if( turtleOut && columnSize != 3 ) {
                 System.out.print  (" Query must have exactly 3 variables ( subject, predicate, object ) " ) ;
                 System.out.println(" when Tuttle format is activated (-ttl ) " )                            ;
                 System.out.println(" See https://www.w3.org/TR/turtle  " )                                  ;
                 System.out.println(" Or try without -ttl parameter " )                                      ; 
-                return ;
+                System.exit(1) ;
             }
         
             while (rs.nextRow()) {
                 
                 line.clear() ;
                 
-                for (int idx = 1; idx <= columnSize; idx++) {
+                for (int idx = 1; idx <= columnSize; idx++)  {
                                         
                     OWLObject binding = rs.getOWLObject(idx) ;
                     
@@ -103,26 +116,57 @@ public class Main_1_18 {
                 }
                
                 if( !line.isEmpty() ) {
+                    
                      lines.add( line
                           .stream()
                           .reduce( ( t, u )-> t + " " + u )
                           .get() + " ." )                    ;
-                     loop++                                  ;
+                     
+                     loopForFlush     ++                     ;
+                     TOTAL_EXTRACTION ++                     ;
+                     
                 }
                 
-                if( loop >= flushCount ) {
-                     Writer.writeTextFile(lines, outputFile ) ;                     
-                     lines.clear()                            ;
-                     loop = 0                                 ;
+                if( fragment != 0 && TOTAL_EXTRACTION % fragment == 0  ) {
+                            
+                    if( ! lines.isEmpty() )  {
+                        InOut.createFileIfNotExists(currentFile)  ;
+                        InOut.writeTextFile(lines, currentFile )  ;
+                        lines.clear()                             ;
+                        loopForFlush = 0                          ;
+                        currentFile  =  getCurrentFile( outputFile      , 
+                                                        ++fragCounter ) ;
+                    }
+                }
+                 
+                if ( loopForFlush >= flushCount )                {
+                    
+                    if( ! lines.isEmpty() )     {
+                        /* Append to an existing file */
+                        InOut.createFileIfNotExists(currentFile) ;
+                        InOut.writeTextFile(lines, currentFile ) ;
+                        lines.clear()                            ;
+                        loopForFlush  = 0                        ;
+                    }
                 }
             }
             
             if( !lines.isEmpty() ) {
-                  Writer.writeTextFile(lines, outputFile ) ;
-                  lines.clear()                            ;
-                  loop = 0                                 ;
+                
+                if ( loopForFlush >= flushCount )                       {
+                       currentFile  =  getCurrentFile ( outputFile      , 
+                                                        ++fragCounter ) ;
+                }
+                
+                InOut.createFileIfNotExists(currentFile)  ;
+                InOut.writeTextFile(lines, currentFile )  ;
+                lines.clear()                             ;
+                loopForFlush  = 0                         ;
+                
             }
         } 
+        
+        return TOTAL_EXTRACTION  ;
     }
 
     private List turtleAdapt ( List<String> line ) throws UnsupportedEncodingException {
@@ -153,19 +197,25 @@ public class Main_1_18 {
             else
             {
                String xsdType = getXSDType(line.get(2))        ;
+               
                if(xsdType != null ) {
                   line.set( 2,"\"" + URLDecoder.decode( line.get(2)
                                                .substring( 1, line.get(2)
                                                .lastIndexOf(">") )
-                                               .split(Pattern.quote("^^xsd:"))[0] , "UTF-8" )
-                                               .replaceAll("\"", "'") + "\"" + xsdType )    ;
+                                               .split( Pattern
+                                               .quote("^^xsd:"))[0] , "UTF-8" )
+                                               .replaceAll("\"", "'") 
+                                               .replaceAll("\n", " ") 
+                                                + "\"" + xsdType )  ;
                 }
+               
                 else
                     if( line.get(2).startsWith("<") && line.get(2).endsWith(">") ) {
                         line.set(0, "\"" + URLDecoder.decode(line.get(2)
                                                      .substring(1, line.get(2)
                                                      .lastIndexOf(">")) ,"UTF-8")
-                                                     .replaceAll("\"", "'") + 
+                                                     .replaceAll("\"", "'")
+                                                     .replaceAll("\n", " ") + 
                                                      "\"" + STR_DTYPE  )    ;
                     }
             }
@@ -174,15 +224,17 @@ public class Main_1_18 {
         return line ;
     }
     
-    private OBDAModel loadOBDA(String obdaFile) throws Exception {
-        OBDADataFactory factory        = OBDADataFactoryImpl.getInstance()  ;
-        OBDAModel       localobdaModel = factory.getOBDAModel()             ;
-        ModelIOManager  ioManager      = new ModelIOManager(localobdaModel) ;
-        ioManager.load(obdaFile)                                            ;
-        return localobdaModel                                               ;
+    private OBDAModel loadOBDA(String obdaFile) throws Exception           {
+       if(obdaFile == null ) return null ;
+       OBDADataFactory factory        = OBDADataFactoryImpl.getInstance()  ;
+       OBDAModel       localobdaModel = factory.getOBDAModel()             ;
+       ModelIOManager  ioManager      = new ModelIOManager(localobdaModel) ;
+       ioManager.load(obdaFile)                                            ;
+       return localobdaModel                                               ;
     }
 
     private OWLOntology loadOWLOntology(String owlFile) throws Exception  {
+       if(owlFile == null ) return null ;
        OWLOntologyManager manager = OWLManager.createOWLOntologyManager() ;
        return manager.loadOntologyFromOntologyDocument(new File(owlFile)) ;
     }
@@ -194,7 +246,7 @@ public class Main_1_18 {
        return false ;
    }
    
-   private boolean isRDFtype ( String string ) {
+   private boolean isRDFtype ( String string )         {
        return  string.toLowerCase().equals("rdf:type") ;
    }
    
@@ -213,68 +265,15 @@ public class Main_1_18 {
    private boolean valideXSD( String xsd ) {
        return XSD.contains(xsd) ;
    }
+
+   
+   private static String getCurrentFile(  String outFile , int fragment  )   {
      
-    /**
-     * Main client program
-     * @param args
-     * @throws java.lang.Exception
-     */
-    public static void main(String[] args) throws Exception {
-          
-       final String defaultSparqlQuery =  "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " ;
+      if ( fragment <= 0 ) {
+           return outFile  ; 
+      }
+    
+     return outFile + "_" + fragment ;             
+   }  
 
-       String owlFile = "", obdaFile = "", outFile = "", q = ""  ;
-       
-       boolean turtleOut  = false                                ;
-       boolean existQuery = false                                ;
-        
-        for ( int i = 0 ; i < args.length ; i++ ) {
-            
-            String token = args[i]                         ;
-           
-            switch ( token ) {
-                    case "-owl"  :  owlFile   = args[i+1]  ;
-                                    break ;
-                    case "-obda" :  obdaFile  = args[i+1]  ;
-                                    break ;
-                    case "-out"  :  outFile   = args[i+1]  ;
-                                    break ;
-                    case "-ttl"  :  turtleOut = true       ;
-                                    break ;
-                    case "-q"    :  q = args[i+1]          ;  
-                                    existQuery = true      ;
-                                    break ;
-            }
-        }
-       
-        System.out.println(" owl        =  " + owlFile )   ;
-        System.out.println(" obda       =  " + obdaFile )  ;
-        System.out.println(" out        =  " + outFile )   ;
-        System.out.println(" q          =  " + q )         ;
-        System.out.println(" TurtleOut  =  " + turtleOut ) ;
-        System.out.println("                           " ) ;
-        
-        if( owlFile.isEmpty() || obdaFile.isEmpty() || outFile.isEmpty() ) {
-           System.out.println(" Missing parameters !! ")   ;
-           return                                          ;
-        }
-        
-        if( !existQuery ) {
-            q         = defaultSparqlQuery                 ;
-            turtleOut = true                               ;
-        }
-                
-        Writer.checkFile( outFile )                             ;
-
-        long startTime = System.currentTimeMillis()             ;
-                
-        Main_1_18 ontop  = new Main_1_18 ( owlFile, obdaFile )  ;
-        ontop.run( q, outFile , turtleOut )                     ;
-        
-        System.out.println(" ")                                                  ;
-        long executionTime = System.currentTimeMillis() - startTime              ;
-        System.out.println(" Elapsed seconds : " + executionTime / 1000 +" s" )  ; 
-        System.out.println(" ")                                                  ;
-                   
-    }
 }
