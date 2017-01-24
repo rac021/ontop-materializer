@@ -27,10 +27,6 @@ import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConfiguration ;
 
 public class Processor {
  
-    //final int fragment = 100 ;
-    
-    private final int flushCount = 1_000_000  ;
-   
     private final   OWLOntology ontology   ;
     private final   OBDAModel   obdaModel  ;
     
@@ -50,7 +46,8 @@ public class Processor {
     public int run( String query        , 
                     String outputFile   , 
                     Boolean turtleOut   , 
-                    int fragment        ) throws Exception                                        {
+                    int fragment        ,
+                    int flushCount      ) throws Exception                                        {
 
         QuestPreferences preference = new QuestPreferences() ;
         preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_MAPPINGS, QuestConstants.TRUE)  ;
