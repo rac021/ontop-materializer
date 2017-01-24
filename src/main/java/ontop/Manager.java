@@ -1,5 +1,5 @@
 
-package ontop;
+package ontop ;
 
 import java.util.List ;
 import java.util.ArrayList ;
@@ -24,7 +24,8 @@ public class Manager {
                                boolean batch           ,
                                int     pageSize        ,
                                int     fragment        ,
-                               boolean merge           ) throws Exception  {
+                               boolean merge           ,
+                               int     flushCount )    throws Exception  {
       
     if( ! InOut.existFile(owlFile) ) {
         System.out.println( " " )                           ;
@@ -46,7 +47,8 @@ public class Manager {
        ontop.run( sparqlQuery     , 
                   outFile         , 
                   turtleOutFormat , 
-                  fragment        )    ;
+                  fragment        ,
+                  flushCount      )                           ;
        return                                                 ;
     }
     
@@ -94,7 +96,8 @@ public class Manager {
                                                   index ++          ,
                                                   sparqlQuery       ,
                                                   turtleOutFormat   ,
-                                                  fragment          ) ;
+                                                  fragment          ,
+                                                  flushCount      ) ;
     }
  
     if( ! merge )  {
@@ -122,7 +125,8 @@ public class Manager {
                                     index   ++             ,
                                     sparqlQuery            ,
                                     turtleOutFormat        ,
-                                    fragment               )  
+                                    fragment               ,
+                                    flushCount             )  
                                     - totalTriplesInOntology > 0 )  {
 
                 /* Obda File */
@@ -139,7 +143,8 @@ public class Manager {
                               index   ++         ,
                               sparqlQuery        ,
                               turtleOutFormat    ,
-                              fragment         ) ; 
+                              fragment           ,
+                              flushCount       ) ; 
         }
     }
             
@@ -152,7 +157,8 @@ public class Manager {
                                       int     index           ,
                                       String  sparqlQuery     ,
                                       boolean turtleOutFormat ,
-                                      int     fragment        ) throws Exception {
+                                      int     fragment        ,
+                                      int     flushCount      ) throws Exception {
  
         /* out path result */
         String out =  outFiles + index ++           +
@@ -164,12 +170,13 @@ public class Manager {
         
         /* Process extraction */
         
-        Processor ontop =  new Processor ( owlFile, subFileObda  ) ;
+        Processor ontop =  new Processor ( owlFile, subFileObda ) ;
         
         int       res   =  ontop.run ( sparqlQuery     , 
                                        out             , 
                                        turtleOutFormat , 
-                                       fragment        )  ;
+                                       fragment        ,
+                                       flushCount      )  ;
         
         if( ( res - totalTriplesInOntology ) ==  0 ) {
           InOut.removeFile( out )  ;
