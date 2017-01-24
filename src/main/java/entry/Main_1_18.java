@@ -1,7 +1,7 @@
 
 package entry ;
 
-import ontop.Manager;
+import ontop.Manager ;
 
 public class Main_1_18 {
  
@@ -17,12 +17,13 @@ public class Main_1_18 {
 
         String owlFile = "", obdaFile = "", outFile = "", sparqlQuery = ""  ;
        
-        boolean  turtleOutFormat = false  ;
-        boolean  existQuery      = false  ;
-        boolean  batch           = false  ;
-        int      pageSize        = -1     ;
-        boolean  merge           = false  ;
-        int      fragment        =  0     ;
+        boolean  turtleOutFormat = false   ;
+        boolean  existQuery      = false   ;
+        boolean  batch           = false   ;
+        int      pageSize        = -1      ;
+        boolean  merge           = false   ;
+        int      fragment        = 0       ;
+        int      flushCount      = 10_0000 ;
        
         
         for ( int i = 0 ; i < args.length ; i++ )  {
@@ -50,6 +51,8 @@ public class Main_1_18 {
                                          validate ( Integer.parseInt ( args[i+1] ) ) ;
                                          break ;
                     case "-f"          : fragment = Integer.parseInt ( args[i+1] )   ;
+                                         break ;
+                    case "-flushCount" : flushCount = Integer.parseInt ( args[i+1] ) ;
                                          break ;
             }
         }
@@ -84,7 +87,8 @@ public class Main_1_18 {
                             batch           ,
                             pageSize        ,
                             fragment        ,
-                            merge           ) ;
+                            merge           ,
+                            flushCount    ) ;
         
         System.out.println(" ")                                                  ;
         long executionTime = System.currentTimeMillis() - startTime              ;
