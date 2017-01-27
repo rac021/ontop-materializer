@@ -208,7 +208,7 @@ public class Processor {
                
                 else
                     if( line.get(2).startsWith("<") && line.get(2).endsWith(">") ) {
-                        line.set(0, "\"" + URLDecoder.decode(line.get(2)
+                        line.set(2, "\"" + URLDecoder.decode(line.get(2)
                                                      .substring(1, line.get(2)
                                                      .lastIndexOf(">")) ,"UTF-8")
                                                      .replaceAll("\"", "'")
