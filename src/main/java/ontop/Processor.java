@@ -65,13 +65,17 @@ public class Processor {
         QuestOWLConfiguration config = QuestOWLConfiguration.builder()
                                                             .obdaModel(obdaModel)
                                                             .preferences(preference)
-                                                            .build() ;
+                                                            .build()    ;
         
-        int     TOTAL_EXTRACTION      =  0                           ;
-        int     fragCounter           =  0                           ;
+        int     TOTAL_EXTRACTION     =  0                               ;
+        int     fragCounter          =  0                               ;
         
-        String  currentFile           =  outputFile                  ; 
+        String  currentFile          =  outputFile                      ; 
         
+        String folder                = InOut.getFolder ( outputFile )   ;
+        String fileName              = InOut.getfileName ( outputFile ) ;
+        String extension             = InOut.getFileExtension(fileName) ; 
+     
          /*
          * Prepare the data connection for querying.
          */
@@ -82,11 +86,11 @@ public class Processor {
               QuestOWLResultSet  rs   = st.executeTuple(query)   ;
         )
         {
-            List<String>  lines      =  new ArrayList<>()   ;
-            List<String>  line       =  new ArrayList()     ;
+            List<String>  lines      =  new ArrayList<>()        ;
+            List<String>  line       =  new ArrayList()          ;
 
-            int           loopForFlush  =  0                   ;
-            int           columnSize    =  rs.getColumnCount() ;
+            int           loopForFlush  =  0                     ;
+            int           columnSize    =  rs.getColumnCount()   ;
              
             if( turtleOut && columnSize != 3 ) {
                 System.out.print  (" Query must have exactly 3 variables ( subject, predicate, object ) " ) ;
@@ -132,6 +136,7 @@ public class Processor {
                         lines.clear()                             ;
                         loopForFlush = 0                          ;
                         currentFile  =  getCurrentFile( outputFile      , 
+                                                        extension       , 
                                                         ++fragCounter ) ;
                     }
                 }
@@ -152,6 +157,7 @@ public class Processor {
                 
                 if ( loopForFlush >= flushCount )                       {
                        currentFile  =  getCurrentFile ( outputFile      , 
+                                                        extension       ,
                                                         ++fragCounter ) ;
                 }
                 
@@ -264,13 +270,13 @@ public class Processor {
    }
 
    
-   private static String getCurrentFile(  String outFile , int fragment  )   {
+   private static String getCurrentFile(  String outFile , String extension , int fragment  )   {
      
       if ( fragment <= 0 ) {
            return outFile  ; 
       }
     
-     return outFile + "_" + fragment ;             
-   }  
+     return outFile.replace(extension, "") + "_" + fragment + extension ;             
+   }    
 
 }
