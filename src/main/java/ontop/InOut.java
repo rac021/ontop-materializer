@@ -98,8 +98,7 @@ public class InOut {
      public static String getfileName(String outputFile) {
          Path path = Paths.get(outputFile)    ;
          return path.getFileName().toString() ;
-    }
-    
+    }    
       
     public static String getFileExtension( String fileName ) {      
         if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0 )
@@ -109,5 +108,10 @@ public class InOut {
      
     public static String getFileWithoutExtension( String fileName ) {      
          return fileName.replaceFirst("[.][^.]+$", "") ;
+    }
+   
+    public static String getFolder(String outputFile ) {
+      Path path = Paths.get(outputFile)  ;
+      return path.getParent().toString() ;
     }
 }
