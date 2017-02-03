@@ -161,7 +161,7 @@ public class Manager {
                                       int     flushCount      ) throws Exception {
  
         /* out path result */
-        String out =  outFiles + index ++           +
+        String out =  outFiles + "_" + index ++     +
                       "_" + Mapping.FILE_NAME       +
                       "_" + mapping.getCodeFromId() +
                       "_" + Mapping.PAGE_SIZE       +
