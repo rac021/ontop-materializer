@@ -83,7 +83,7 @@ public class Mapping {
             
           if( driver.equalsIgnoreCase("POSTGRESQL")) {
 
-            Pattern p = Pattern.compile("LIMIT +.?\\d+ ", Pattern.CASE_INSENSITIVE) ;
+            Pattern p = Pattern.compile("LIMIT +.?\\d+.*", Pattern.CASE_INSENSITIVE) ;
             Matcher m = p.matcher( query ) ;
 
             String limit = "" , offset = "" ;
