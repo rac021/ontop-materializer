@@ -133,9 +133,9 @@ public class Mapping {
     public String applyOffset( Integer OFFSET )            { 
         
         this.OFFSET = OFFSET                               ;
-        instanceQuery = templateQuery.replaceAll("'","''") ;        
+        instanceQuery = templateQuery.replaceAll("'","<>") ;        
         return instanceQuery = format( instanceQuery , 
-                                       OFFSET.toString() ).replaceAll("''", "'") ;
+                                       OFFSET.toString() ).replaceAll("<>", "'") ;
     }
         
     @Override
