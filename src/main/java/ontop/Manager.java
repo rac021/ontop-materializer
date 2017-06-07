@@ -86,8 +86,7 @@ public class Manager {
         String ontoObdaFileName =  subFolder + "emptyMapping.obda"   ;
       
         /* Obda File */
-        InOut.writeTextFile( emptyMapping.emptyMapping(), ontoObdaFileName  ) ;
-        
+        InOut.writeTextFile( emptyMapping.emptyMapping(), ontoObdaFileName  ) ;        
         
         totalTriplesInOntology = processMapping ( emptyMapping      ,
                                                   ontoObdaFileName  ,
