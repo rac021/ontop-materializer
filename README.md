@@ -3,7 +3,7 @@
 
 | Branch    | build status  |
 |-----------|---------------|
-| [V3](https://github.com/rac021/ontop-matarializer/tree/master)  |[![Build Status](https://travis-ci.org/ontop/ontop.svg?branch=V3)](https://travis-ci.org/rac021/ontop-matarializer)|
+| [V3](https://github.com/rac021/ontop-matarializer/tree/V3)  |[![Build Status](https://travis-ci.org/ontop/ontop.svg?branch=V3)](https://github.com/rac021/ontop-matarializer/tree/V3)|
 
 Materialize triples from database using : Ontop-Quest API + OBDA file + Ontology .
 
