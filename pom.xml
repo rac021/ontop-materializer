@@ -3,17 +3,45 @@
     
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.unibz.inf.ontop</groupId>
-    <artifactId>ontop-materializer</artifactId>
-    <version>1.18.0</version>
+    <artifactId>ontop-materializer_V3</artifactId>
+    <version>3.0</version>
+
+    <properties>
+        <ontop.version>3.0.0-beta-1</ontop.version>
+    </properties>
 
     <dependencies>
-       
+    
         <dependency>
             <groupId>it.unibz.inf.ontop</groupId>
-            <artifactId>ontop-quest-owlapi</artifactId>
-            <version>1.18.0</version>
+            <artifactId>ontop-owlapi</artifactId>
+            <version>${ontop.version}</version>
         </dependency>
-        
+
+        <dependency>
+            <groupId>it.unibz.inf.ontop</groupId>
+            <artifactId>ontop-system-sql-owlapi</artifactId>
+            <version>${ontop.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>it.unibz.inf.ontop</groupId>
+            <artifactId>ontop-rdf4j</artifactId>
+            <version>${ontop.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
@@ -44,7 +72,7 @@
                 <dependency>
                     <groupId>mysql</groupId>
                     <artifactId>mysql-connector-java</artifactId>
-                    <version>5.1.6</version>
+                    <version>8.0.8-dmr</version>
                 </dependency>
             </dependencies>
             

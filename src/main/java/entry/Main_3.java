@@ -3,7 +3,7 @@ package entry ;
 
 import ontop.Manager ;
 
-public class Main_1_18 {
+public class Main_3 {
  
     /**
      * Main client program
@@ -15,9 +15,11 @@ public class Main_1_18 {
           
         final String defaultSparqlQuery =  "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " ;
 
-        String owlFile = "", obdaFile = "", outFile = "", sparqlQuery = ""  ;
-       
+        String owlFile     = ""  , obdaFile   = "" , outFile = "" , 
+               sparqlQuery = ""  , connection = ""  ;
+        
         boolean  turtleOutFormat = false   ;
+        boolean  dev             = false   ;
         boolean  existQuery      = false   ;
         boolean  batch           = false   ;
         int      pageSize        = -1      ;
@@ -43,29 +45,35 @@ public class Main_1_18 {
                     case "-q"          : sparqlQuery     = args[i+1]  ;
                                          existQuery      = true       ;
                                          break ;                   
-                    case "-merge"      : merge           = true     ;
+                    case "-merge"      : merge           = true       ;
                                          break ;
                     case "-batch"      : batch           = true       ;  
+                                         break ;
+                    case "-dev"        : dev = true                   ;
                                          break ;
                     case "-pageSize"   : pageSize        = 
                                          validate ( Integer.parseInt ( args[i+1] ) ) ;
                                          break ;
-                    case "-f"          : fragment = Integer.parseInt ( args[i+1] )   ;
+                    case "-f"          : fragment   = Integer.parseInt ( args[i+1] ) ;
                                          break ;
                     case "-flushCount" : flushCount = Integer.parseInt ( args[i+1] ) ;
+                                         break ;
+                    case "-connection" : connection = args[i+1] ;
                                          break ;
             }
         }
        
-        System.out.println(" owl        =  " + owlFile )         ;
-        System.out.println(" obda       =  " + obdaFile )        ;
-        System.out.println(" out        =  " + outFile )         ;
+        System.out.println(" owl        =  " + owlFile     )     ;
+        System.out.println(" obda       =  " + obdaFile    )     ;
+        System.out.println(" connection =  " + connection  )     ;
+        System.out.println(" out        =  " + outFile     )     ;
         System.out.println(" q          =  " + sparqlQuery )     ;
         System.out.println(" TurtleOut  =  " + turtleOutFormat ) ;
-        System.out.println(" Fragment   =  " + fragment )        ;
+        System.out.println(" Fragment   =  " + fragment        ) ;
         System.out.println("                           " )       ;
         
-        if( owlFile.isEmpty() || obdaFile.isEmpty() || outFile.isEmpty() ) {
+        if( owlFile.isEmpty() || obdaFile.isEmpty()  || 
+            outFile.isEmpty() || connection.isEmpty() )    {
            System.out.println( " " )                       ;
            System.out.println(" Missing parameters !! ")   ;
            System.out.println( " " )                       ;
@@ -81,6 +89,7 @@ public class Main_1_18 {
       
            Manager.process( owlFile         ,
                             obdaFile        ,
+                            connection      ,
                             sparqlQuery     , 
                             outFile         ,
                             turtleOutFormat ,
@@ -88,7 +97,8 @@ public class Main_1_18 {
                             pageSize        ,
                             fragment        ,
                             merge           ,
-                            flushCount    ) ;
+                            flushCount      ,
+                            dev           ) ;
         
         System.out.println(" ")                                                  ;
         long executionTime = System.currentTimeMillis() - startTime              ;

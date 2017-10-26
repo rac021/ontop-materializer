@@ -18,6 +18,7 @@ public class Manager {
     
   public static void process ( String  owlFile         ,
                                String  obdaFile        ,
+                               String  connectionFile  ,
                                String  sparqlQuery     ,
                                String  outFile         ,
                                boolean turtleOutFormat ,
@@ -25,7 +26,8 @@ public class Manager {
                                int     pageSize        ,
                                int     fragment        ,
                                boolean merge           ,
-                               int     flushCount )    throws Exception  {
+                               int     flushCount      ,
+                               boolean dev             )    throws Exception  {
       
     if( ! InOut.existFile(owlFile) ) {
         System.out.println( " " )                           ;
@@ -43,13 +45,14 @@ public class Manager {
     }
     
     if( ! batch ) {
-       Processor ontop  = new Processor ( owlFile, obdaFile ) ;
-       ontop.run( sparqlQuery     , 
-                  outFile         , 
-                  turtleOutFormat , 
-                  fragment        ,
-                  flushCount      )                           ;
-       return                                                 ;
+        
+          new Processor ( owlFile, obdaFile , connectionFile ).run( sparqlQuery     , 
+                                                                    outFile         , 
+                                                                    turtleOutFormat , 
+                                                                    fragment        ,
+                                                                    flushCount      ,
+                                                                    dev           ) ;
+          return                                                                    ;
     }
     
     /* Transform File to String */
@@ -73,7 +76,7 @@ public class Manager {
     
     /*   Create tmp folder for sub-mappings */
     String subFolder          = InOut.extractFolder( obdaFile ) + "subMappings/" ;
-    String subOBDAFilePath    =  subFolder + "mapping.obda"                      ;
+    String subOBDAFilePath    = subFolder + "mapping.obda"                      ;
     InOut.deleteAndCreateFile ( subOBDAFilePath    )                             ;
     
     int currentPage  = 0  ; 
@@ -91,12 +94,14 @@ public class Manager {
         totalTriplesInOntology = processMapping ( emptyMapping      ,
                                                   ontoObdaFileName  ,
                                                   owlFile           ,
+                                                  connectionFile    ,
                                                   outFile           ,
                                                   index ++          ,
                                                   sparqlQuery       ,
                                                   turtleOutFormat   ,
                                                   fragment          ,
-                                                  flushCount      ) ;
+                                                  flushCount        ,
+                                                  dev             ) ;
     }
  
     if( ! merge )  {
@@ -120,12 +125,14 @@ public class Manager {
             while( processMapping ( mapping                ,
                                     subOBDAFilePath        ,
                                     owlFile                ,
+                                    connectionFile         ,
                                     outFile                ,
                                     index   ++             ,
                                     sparqlQuery            ,
                                     turtleOutFormat        ,
                                     fragment               ,
-                                    flushCount             )  
+                                    flushCount             ,
+                                    dev                    )  
                                     - totalTriplesInOntology > 0 )  {
 
                 /* Obda File */
@@ -138,12 +145,14 @@ public class Manager {
              processMapping ( mapping            ,
                               subOBDAFilePath    ,
                               owlFile            ,
+                              connectionFile     ,
                               outFile            ,
                               index   ++         ,
                               sparqlQuery        ,
                               turtleOutFormat    ,
                               fragment           ,
-                              flushCount       ) ; 
+                              flushCount         ,
+                              dev              ) ; 
         }
     }
             
@@ -152,12 +161,14 @@ public class Manager {
   private static int processMapping ( Mapping mapping         ,
                                       String  subFileObda     , 
                                       String  owlFile         ,
+                                      String  connectionFile  ,
                                       String  outFiles        ,
                                       int     index           ,
                                       String  sparqlQuery     ,
                                       boolean turtleOutFormat ,
                                       int     fragment        ,
-                                      int     flushCount      ) throws Exception {
+                                      int     flushCount      ,
+                                      boolean dev             ) throws Exception {
  
         /* out path result */
         String out =  outFiles + "_" + index ++     +
@@ -169,16 +180,17 @@ public class Manager {
         
         /* Process extraction */
         
-        Processor ontop =  new Processor ( owlFile, subFileObda ) ;
+        Processor ontop =  new Processor ( owlFile, subFileObda ,  connectionFile) ;
         
         int       res   =  ontop.run ( sparqlQuery     , 
                                        out             , 
                                        turtleOutFormat , 
                                        fragment        ,
-                                       flushCount      )  ;
+                                       flushCount      ,
+                                       dev          )  ;
         
         if( ( res - totalTriplesInOntology ) ==  0 ) {
-          InOut.removeFile( out )  ;
+           InOut.removeFile( out )  ;
          }
         
         return res ;

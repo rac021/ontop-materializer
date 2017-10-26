@@ -1,34 +1,36 @@
 
 package ontop ;
 
-import java.io.File                                                   ;
+import it.unibz.inf.ontop.answering.reformulation.impl.SQLExecutableQuery;
+import it.unibz.inf.ontop.owlapi.OntopOWLFactory;
 import java.util.List                                                 ;
 import java.util.Arrays                                               ;
 import java.util.ArrayList                                            ;
 import java.net.URLDecoder                                            ;
 import java.util.regex.Pattern                                        ;
-import it.unibz.inf.ontop.model.OBDAModel                             ;
-import it.unibz.inf.ontop.io.ModelIOManager                           ;
 import java.io.UnsupportedEncodingException                           ;
-import org.semanticweb.owlapi.model.OWLObject                         ;
-import it.unibz.inf.ontop.model.OBDADataFactory                       ; 
-import org.semanticweb.owlapi.model.OWLOntology                       ;
-import org.semanticweb.owlapi.apibinding.OWLManager                   ;
-import org.semanticweb.owlapi.model.OWLOntologyManager                ;
-import it.unibz.inf.ontop.model.impl.OBDADataFactoryImpl              ;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWL              ;
-import it.unibz.inf.ontop.owlrefplatform.core.QuestConstants          ;
-import it.unibz.inf.ontop.owlrefplatform.core.QuestPreferences        ;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLFactory       ;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLResultSet     ;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLStatement     ;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConnection    ;
-import it.unibz.inf.ontop.owlrefplatform.owlapi.QuestOWLConfiguration ;
+import org.semanticweb.owlapi.model.OWLObject;
+
+
+import it.unibz.inf.ontop.injection.OntopSQLOWLAPIConfiguration;
+import it.unibz.inf.ontop.owlapi.OntopOWLReasoner;
+import it.unibz.inf.ontop.owlapi.connection.OntopOWLConnection;
+import it.unibz.inf.ontop.owlapi.connection.OntopOWLStatement;
+import it.unibz.inf.ontop.owlapi.resultset.OWLBinding;
+import it.unibz.inf.ontop.owlapi.resultset.OWLBindingSet;
+import it.unibz.inf.ontop.owlapi.resultset.TupleOWLResultSet;
+import static java.util.stream.Collectors.joining;
+import org.semanticweb.owlapi.io.ToStringRenderer;
+
 
 public class Processor {
  
-    private final   OWLOntology ontology   ;
-    private final   OBDAModel   obdaModel  ;
+   // private final   OWLOntology ontology   ;
+   // private final   OBDAModel   obdaModel  ;
+    
+    private final String owlFile        ;
+    private final String obdaFile       ;
+    private final String connectionFile ;
     
     private final String STR_DTYPE     = "^^xsd:string"                                                                            ;
     private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"                                       ;
@@ -38,35 +40,25 @@ public class Processor {
                                                          "double" , "dateTime" , "date"    , 
                                                          "time"   , "duration" , "boolean" ) ;
     
-    Processor ( String owlFile, String obdaFile ) throws Exception {
-        ontology   = loadOWLOntology(owlFile) ;
-        obdaModel  = loadOBDA(obdaFile)       ;
+    
+    Processor ( String owlFile, 
+                String obdaFile , 
+                String connectionFile ) throws Exception {
+
+        this.owlFile        = owlFile        ;
+        this.obdaFile       = obdaFile       ;
+        this.connectionFile = connectionFile ;
+
     }
     
-    public int run( String query        , 
-                    String outputFile   , 
+    public int run( String  query       , 
+                    String  outputFile  , 
                     Boolean turtleOut   , 
-                    int fragment        ,
-                    int flushCount      ) throws Exception                                        {
+                    int     fragment    ,
+                    int     flushCount  ,     
+                    boolean dev         ) throws Exception              {
 
-        QuestPreferences preference = new QuestPreferences() ;
-        preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_MAPPINGS, QuestConstants.TRUE)  ;
-        preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_ONTOLOGY, QuestConstants.TRUE)  ;
-        preference.setCurrentValueOf(QuestPreferences.REFORMULATION_TECHNIQUE, QuestConstants.TW) ;
-        preference.setCurrentValueOf(QuestPreferences.DBTYPE, QuestConstants.SEMANTIC_INDEX)      ; 
-        preference.setCurrentValueOf(QuestPreferences.ABOX_MODE, QuestConstants.VIRTUAL)          ;
-        preference.setCurrentValueOf(QuestPreferences.OPTIMIZE_EQUIVALENCES, "true")              ;
-        preference.setCurrentValueOf(QuestPreferences.REWRITE, "true")                            ;
-
-        /*
-         * Create the instance of Quest OWL reasoner.
-         */
-        QuestOWLFactory factory      = new QuestOWLFactory() ;
-        QuestOWLConfiguration config = QuestOWLConfiguration.builder()
-                                                            .obdaModel(obdaModel)
-                                                            .preferences(preference)
-                                                            .build()    ;
-        
+       
         int     TOTAL_EXTRACTION     =  0                               ;
         int     fragCounter          =  0                               ;
         
@@ -75,19 +67,31 @@ public class Processor {
         String folder                = InOut.getFolder ( outputFile )   ;
         String fileName              = InOut.getfileName ( outputFile ) ;
         String extension             = InOut.getFileExtension(fileName) ; 
-     
-         /*
-         * Prepare the data connection for querying.
-         */
-        try (
-              QuestOWL reasoner       = factory.createReasoner(ontology, config) ;
-              QuestOWLConnection conn = reasoner.getConnection() ;
-              QuestOWLStatement  st   = conn.createStatement()   ;
-              QuestOWLResultSet  rs   = st.executeTuple(query)   ;
-        )
-        {
-            List<String>  lines      =  new ArrayList<>()        ;
-            List<String>  line       =  new ArrayList()          ;
+           
+        OntopOWLFactory factory = OntopOWLFactory.defaultFactory();
+
+        OntopSQLOWLAPIConfiguration config = OntopSQLOWLAPIConfiguration.defaultBuilder()
+                .nativeOntopMappingFile(obdaFile)
+                .ontologyFile(owlFile)
+                .propertyFile(connectionFile)
+                .enableTestMode()
+                .build();
+
+        OntopOWLReasoner reasoner = factory.createReasoner(config);
+        
+      //  System.out.println();
+      //  System.out.println("The input SPARQL query:");
+      //  System.out.println("=======================");
+      //  System.out.println(sparqlQuery);
+      //  System.out.println();
+
+        try (OntopOWLConnection conn = reasoner.getConnection()   ;
+             OntopOWLStatement  st   = conn.createStatement()     ;
+             TupleOWLResultSet  rs   = st.executeSelectQuery(query)
+        ) {
+            
+            List<String>  lines         =  new ArrayList<>()     ;
+            List<String>  line          =  new ArrayList()       ;
 
             int           loopForFlush  =  0                     ;
             int           columnSize    =  rs.getColumnCount()   ;
@@ -99,21 +103,21 @@ public class Processor {
                 System.out.println(" Or try without -ttl parameter " )                                      ; 
                 System.exit(1) ;
             }
-        
-            while (rs.nextRow()) {
+
+            while (rs.hasNext()) {
                 
+                final OWLBindingSet bindingSet = rs.next() ;
+               
                 line.clear() ;
                 
-                for (int idx = 1; idx <= columnSize; idx++)  {
-                                        
-                    OWLObject binding = rs.getOWLObject(idx) ;
-                    
-                    line.add(binding.toString())             ;
+                 for (OWLBinding binding : bindingSet)    {
+                     OWLObject value = binding.getValue() ;
+                     line.add(ToStringRenderer.getInstance().getRendering(value)) ;
                 }
-                
+               
                 if( turtleOut ) {
 
-                    line = turtleAdapt (line)                ;
+                    line = turtleAdapt (line) ;
                 }
                
                 if( !line.isEmpty() ) {
@@ -167,8 +171,32 @@ public class Processor {
                 loopForFlush  = 0                         ;
                 
             }
-        } 
-        
+            
+            if( dev )  {
+                
+                System.out.println(" ") ;
+                System.out.println("*************************************") ;
+                System.out.println(" DEV_MOD ****************************") ;
+                System.out.println("*************************************") ;
+                System.out.println(" ") ;
+                
+                // Only for debugging purpose, not for 
+                // end users: this will redo the query 
+                // reformulation, which can be expensive
+                
+                final SQLExecutableQuery sqlExecutableQuery = (SQLExecutableQuery) st.getExecutableQuery(query);
+                String sqlQuery = sqlExecutableQuery.getSQL() ;
+    
+                System.out.println("============================") ;
+                System.out.println("============================") ;
+                System.out.println(" The output SQL query: "     ) ;
+                System.out.println("============================") ;
+                System.out.println(sqlQuery);
+                
+            }
+                
+            }
+     
         return TOTAL_EXTRACTION  ;
     }
 
@@ -227,21 +255,7 @@ public class Processor {
         return line ;
     }
     
-    private OBDAModel loadOBDA(String obdaFile) throws Exception           {
-       if(obdaFile == null ) return null ;
-       OBDADataFactory factory        = OBDADataFactoryImpl.getInstance()  ;
-       OBDAModel       localobdaModel = factory.getOBDAModel()             ;
-       ModelIOManager  ioManager      = new ModelIOManager(localobdaModel) ;
-       ioManager.load(obdaFile)                                            ;
-       return localobdaModel                                               ;
-    }
-
-    private OWLOntology loadOWLOntology(String owlFile) throws Exception  {
-       if(owlFile == null ) return null ;
-       OWLOntologyManager manager = OWLManager.createOWLOntologyManager() ;
-       return manager.loadOntologyFromOntologyDocument(new File(owlFile)) ;
-    }
-
+  
    private boolean isURI( String path ) { 
        if(path.startsWith("<") && path.endsWith(">")) {
           return path.substring(1, path.lastIndexOf(">")).matches(URI_VALIDATOR) ;
