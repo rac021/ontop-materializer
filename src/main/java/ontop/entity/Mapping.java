@@ -1,26 +1,25 @@
 
-package ontop.entity;
+ package ontop.entity ;
 
-import static java.text.MessageFormat.format;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+ import java.util.List ;
+ import java.util.regex.Matcher ;
+ import java.util.regex.Pattern ;
+ import static java.text.MessageFormat.format ;
 
-/**
+ /**
  *
  * @author ryahiaoui
  */
-public class Mapping {
+ public class Mapping {
     
-    public static       String header        ;
-    public static final String footer = "]]" ;
+    public static       String connectionHeader  ;
+    public static       String prefixDeclaration  ;
     
-    
-    private final String  mappingKey =  "mappingId \t " ;
-    private final String  targetKey  =  "target \t\t"   ;
-    private final String  sourceKey  =  "source	\t "    ;
-    private final String  newLine    =  "\n"            ;
-    
+    public static final String  footer     = "]]"             ;
+    private       final String  mappingKey =  "mappingId \t " ;
+    private       final String  targetKey  =  "target \t\t"   ;
+    private       final String  sourceKey  =  "source	\t "  ;
+    private       final String  newLine    =  "\n"            ;
 
     private final String id            ;
     private final String target        ;
@@ -53,20 +52,22 @@ public class Mapping {
              query.replaceAll(" +", " ").trim()     ;
     }
     
-    public static String getHeader() {
-        return header;
+    public static String getConnectionHeader() {
+        return connectionHeader ;
     }
 
     public static String getFooter() {
-        return footer;
+        return footer ;
     }
 
     public String getId() {
-        return id;
+        return id ;
     }
     
     public String getCleanedId() {
-        return id.replace("(", "").replace(")", "").replace("/", "-") ;
+        return id.replace("(", "")
+                 .replace(")", "")
+                 .replace("/", "-") ;
     }
 
     public String getTarget() {
@@ -77,51 +78,59 @@ public class Mapping {
         return query ;
     }
     
-    public void applyParams ( List<String> headers , int PAGE_SIZE , String driver ) {
+    public void applyParams ( List<String> columns , 
+                              int PAGE_SIZE        ,
+                              String driver        ) {
       
         if( PAGE_SIZE >= 0 ) {
             
           if( driver.equalsIgnoreCase("POSTGRESQL")) {
 
-            Pattern p = Pattern.compile("LIMIT +.?\\d+.*", Pattern.CASE_INSENSITIVE) ;
+            Pattern p = Pattern.compile( "LIMIT +.?\\d+.*"        , 
+                                         Pattern.CASE_INSENSITIVE ) ;
             Matcher m = p.matcher( query ) ;
 
             String limit = "" , offset = "" ;
 
-             if(m.find()) {
+            if(m.find()) {
                  limit = m.group() ;
-             }
+            }
 
-            p = Pattern.compile("OFFSET +.?\\d+ ", Pattern.CASE_INSENSITIVE ) ;
+            p = Pattern.compile( "OFFSET +.?\\d+ "          , 
+                                 Pattern.CASE_INSENSITIVE ) ;
             m = p.matcher( query ) ;
 
-             if(m.find()) {
+            if(m.find()) {
                  offset = m.group() ;
-             }
+            }
               
              
-              if( ! query.toLowerCase().contains("order by "))                 {
+            if( ! query.toLowerCase().contains("order by "))  {
               
-                   templateQuery += " ORDER BY " + String.join(", ", headers ) ;
-              }
+                 templateQuery += " ORDER BY " + 
+                                  String.join(", ", columns ) ;
+            }
               
-              if( offset.isEmpty() ) {
-                 templateQuery += " OFFSET {0} " ;
-              }
-              else {
-                 templateQuery = templateQuery.replace( offset, " " ) + offset ;
-              }
+            if( offset.isEmpty() ) {
+                templateQuery += " OFFSET {0} " ;
+            }
+            else {
+                templateQuery = templateQuery.replace( offset, " " ) 
+                                + offset ;
+            }
               
-              /* LIMIT MUST BE AT THE END : Because of Ontop Bug ! */
+            /* LIMIT MUST BE AT THE END : Because of Ontop Bug ! */
               
-              if( limit.isEmpty() ) {
-                 templateQuery += " LIMIT " + PAGE_SIZE ;
-              }
-              else {
-                 templateQuery =  templateQuery.replace( limit, " " )  + limit ;
-              }
+            if( limit.isEmpty() ) {
+               templateQuery += " LIMIT " + PAGE_SIZE ;
+            }
+            else {
+               templateQuery =  templateQuery.replace( limit, " " )  
+                                + limit ;
+            }
               
-              templateQuery = templateQuery.replaceAll(" +", " ").trim() + " " ;
+            templateQuery = templateQuery.replaceAll(" +", " ")
+                                         .trim() + " " ;
           }
 
           else if( driver.equalsIgnoreCase("MYSQL")) {
@@ -135,29 +144,30 @@ public class Mapping {
         this.OFFSET = OFFSET                               ;
         instanceQuery = templateQuery.replaceAll("'","<>") ;        
         return instanceQuery = format( instanceQuery , 
-                                       OFFSET.toString() ).replaceAll("<>", "'") ;
+                                       OFFSET.toString() )
+                                             .replaceAll("<>", "'") ;
     }
         
     @Override
-    public String toString() {
-       return  header                     +  
+    public String toString()  {
+       return  prefixDeclaration          + 
                mappingKey + id            + newLine + 
                targetKey  + target        + newLine + 
                sourceKey  + instanceQuery + newLine + newLine + 
                footer                     ;
     }
   
-    public String emptyMapping() {
-       return  header               +  
+    public String emptyMapping()    {
+       return  prefixDeclaration    +
                newLine + newLine    + 
                footer               ;
     }
 
     public int getOFFSET() {
-        return OFFSET ;
+        return OFFSET      ;
     }
 
     public String getCodeFromId() {
        return  id.replaceAll("[^0-9]", "") ;
     }
-}
+ }

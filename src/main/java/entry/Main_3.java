@@ -2,6 +2,10 @@
 package entry ;
 
 import ontop.Manager ;
+import org.slf4j.LoggerFactory ;
+import ch.qos.logback.classic.Level ;
+import ch.qos.logback.classic.Logger ;
+
 
 public class Main_3 {
  
@@ -13,20 +17,24 @@ public class Main_3 {
     
     public static void main(String[] args) throws Exception {
           
-        final String defaultSparqlQuery =  "SELECT DISTINCT ?S ?P ?O { ?S ?P ?O . } " ;
+        final String defaultSparqlQuery =  "SELECT ?S ?P ?O { ?S ?P ?O . } " ;
 
         String owlFile     = ""  , obdaFile   = "" , outFile = "" , 
-               sparqlQuery = ""  , connection = ""  ;
+               sparqlQuery = ""  , connection = "" ;
         
-        boolean  turtleOutFormat = false   ;
-        boolean  dev             = false   ;
-        boolean  existQuery      = false   ;
-        boolean  batch           = false   ;
-        int      pageSize        = -1      ;
-        boolean  merge           = false   ;
-        int      fragment        = 0       ;
-        int      flushCount      = 10_0000 ;
+        boolean  turtleOutFormat = false      ;
+        boolean  not_out_onto    = false      ;
+        boolean  out_onto        = false      ;
+        
+        boolean  debug           = false      ;
+        boolean  existQuery      = false      ;
+        boolean  batch           = false      ;
+        int      pageSize        = -1         ;
+        boolean  merge           = false      ;
+        int      fragment        = 0          ;
+        int      flushCount      = 10_0000    ;
        
+        Level    level           = Level.OFF  ; 
         
         for ( int i = 0 ; i < args.length ; i++ )  {
             
@@ -34,50 +42,92 @@ public class Main_3 {
            
             switch ( token ) {
                 
-                    case "-owl"        : owlFile         = args[i+1]  ;
-                                         break ;
-                    case "-obda"       : obdaFile        = args[i+1]  ;
-                                         break ;
-                    case "-out"        : outFile         = args[i+1]  ;
-                                         break ;
-                    case "-ttl"        : turtleOutFormat = true       ;
-                                         break ;
-                    case "-q"          : sparqlQuery     = args[i+1]  ;
-                                         existQuery      = true       ;
-                                         break ;                   
-                    case "-merge"      : merge           = true       ;
-                                         break ;
-                    case "-batch"      : batch           = true       ;  
-                                         break ;
-                    case "-dev"        : dev = true                   ;
-                                         break ;
-                    case "-pageSize"   : pageSize        = 
-                                         validate ( Integer.parseInt ( args[i+1] ) ) ;
-                                         break ;
-                    case "-f"          : fragment   = Integer.parseInt ( args[i+1] ) ;
-                                         break ;
-                    case "-flushCount" : flushCount = Integer.parseInt ( args[i+1] ) ;
-                                         break ;
-                    case "-connection" : connection = args[i+1] ;
-                                         break ;
+              case "-owl"                  : owlFile         = args[i+1]  ;
+                                             break ;
+              case "-obda"                 : obdaFile        = args[i+1]  ;
+                                             break ;
+              case "-out"                  : outFile         = args[i+1]  ;
+                                             break ;
+              case "-ttl"                  : turtleOutFormat = true       ;
+                                             break ;
+              case "-q"                    : sparqlQuery     = args[i+1]  ;
+                                             existQuery      = true       ;
+                                             break ;                   
+              case "-not_out_ontology"     : not_out_onto    = true       ;
+                                             break ;                   
+              case "-out_ontology"         : out_onto        = true       ;
+                                             break ;                   
+              case "-merge"                : merge           = true       ;
+                                             break ;
+              case "-batch"                : batch           = true       ;  
+                                             break ;
+              case "-debug"                : debug = true                 ;
+                                             break ;
+              case "-pageSize"             : pageSize        = 
+                                             validate ( Integer.parseInt ( args[i+1] ) ) ;
+                                             break ;
+              case "-f"                    : fragment   = Integer.parseInt ( args[i+1] ) ;
+                                             break ;
+              case "-flushCount"           : flushCount = Integer.parseInt ( args[i+1] ) ;
+                                             break ;
+              case "-connection"           : connection = args[i+1]                      ;
+                                             break ;
+              case "-log_level"            : level       = checkLog ( args[i+1] )        ;
+                                             break ;
             }
         }
        
-        System.out.println(" owl        =  " + owlFile     )     ;
-        System.out.println(" obda       =  " + obdaFile    )     ;
-        System.out.println(" connection =  " + connection  )     ;
-        System.out.println(" out        =  " + outFile     )     ;
-        System.out.println(" q          =  " + sparqlQuery )     ;
+        if( not_out_onto ) {
+            Manager.output_ontology = false ;
+        }
+        else if( ! out_onto && ! batch )   {
+           Manager.output_ontology = false ;
+        }
+        else if( out_onto )                {
+           Manager.output_ontology = true  ;
+        }
+             
+        System.out.println(" owl        =  " + owlFile         ) ;
+        System.out.println(" obda       =  " + obdaFile        ) ;
+        System.out.println(" connection =  " + connection      ) ;
+        System.out.println(" out        =  " + outFile         ) ;
+        System.out.println(" q          =  " + sparqlQuery     ) ;
         System.out.println(" TurtleOut  =  " + turtleOutFormat ) ;
         System.out.println(" Fragment   =  " + fragment        ) ;
-        System.out.println("                           " )       ;
+        System.out.println(" -------------------------------- ") ;
+        System.out.println(" Out_Onto   =  " + ! not_out_onto  ) ;
+        System.out.println(" BATCH      =  " + batch           ) ;
+        System.out.println(" MERGE      =  " + merge           ) ;
+        System.out.println(" DEBUG_MODE =  " + debug           ) ;
+        System.out.println(" -------------------------------- ") ;
+        System.out.println("                                  ") ;
+        
+        
+        if( level == Level.OFF ) {
+            ontop.Processor.HIDE_SYSTEM_OUT = true ;
+        }
+      
+        System.out.println(" Applaying LOG-LEVEL : " + level )                                          ;
+        
+        createLoggerFor("org.semanticweb.owlapi.util.SAXParsers"                              , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.owlapi.impl.QuestOWL"                             , level ) ;
+        createLoggerFor("org.postgresql.core.v3.QueryExecutorImpl"                            , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.dbschema.BasicDBMetadata"                         , level ) ;
+        createLoggerFor("uk.ac.manchester.cs.owl.owlapi.OWLOntologyManagerImpl"               , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.dbschema.RDBMetadataExtractionTools"              , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.spec.mapping.impl.SQLMappingExtractor"            , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.datalog.impl.CQContainmentCheckUnderLIDs"         , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.spec.ontology.owlapi.OWLAPITranslatorOWL2QL"      , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.answering.reformulation.impl.QuestQueryProcessor" , level ) ;
+        createLoggerFor("it.unibz.inf.ontop.owlrefplatform.core.basicoperations"
+                                                     + ".CQContainmentCheckUnderLIDs"         , level ) ;
         
         if( owlFile.isEmpty() || obdaFile.isEmpty()  || 
-            outFile.isEmpty() || connection.isEmpty() )    {
-           System.out.println( " " )                       ;
-           System.out.println(" Missing parameters !! ")   ;
-           System.out.println( " " )                       ;
-           return                                          ;
+            outFile.isEmpty() || connection.isEmpty() )       {
+           System.out.println( " " )                          ;
+           System.out.println(" Missing some parameters !! ") ;
+           System.out.println( " " )                          ;
+           return                                             ;
         }
         
         if( !existQuery ) {
@@ -98,7 +148,7 @@ public class Main_3 {
                             fragment        ,
                             merge           ,
                             flushCount      ,
-                            dev           ) ;
+                            debug           ) ;
         
         System.out.println(" ")                                                  ;
         long executionTime = System.currentTimeMillis() - startTime              ;
@@ -116,4 +166,27 @@ public class Main_3 {
         }
         return pageSize ;
     }
+    
+    
+    private static void createLoggerFor( String clazz , Level level )  {
+        
+      Logger logger = (Logger) LoggerFactory.getLogger(clazz) ;
+      logger.setLevel( level )                                ;
+      
+    }
+
+    private static Level checkLog(String level) {
+     
+        try {
+             return  Level.toLevel(level.toUpperCase() )  ;
+        } catch( Exception ex )  {
+            System.out.println(" Error : The Level "
+                               + " [" + level +"] deosn't exists."  ) ;
+            System.out.println(" Retained LEVEL : OFF             " ) ;
+            System.out.println("                                  " ) ;
+             return Level.OFF                                         ;
+        }
+
+    }
+
 }

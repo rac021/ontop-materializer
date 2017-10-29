@@ -1,18 +1,18 @@
 
-package ontop;
+ package ontop;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSetMetaData;
-import java.util.ArrayList;
-import java.util.List;
+ import java.util.List ;
+ import java.util.ArrayList ;
+ import java.sql.Connection ;
+ import java.sql.DriverManager ;
+ import java.sql.PreparedStatement ;
+ import java.sql.ResultSetMetaData ;
 
-/**
+ /**
  *
  * @author ryahiaoui
  */
-public class SqlManager {
+ public class SqlManager {
 
     private final String driver   ;
     private final String url      ;
@@ -21,7 +21,7 @@ public class SqlManager {
 
     private final Connection connection ;
     
-    public SqlManager( String driver   ,
+    public SqlManager( String driver  ,
                       String url      ,
                       String username ,
                       String password ) throws Exception {
@@ -32,21 +32,42 @@ public class SqlManager {
         this.password = password ;
 
         Class.forName(driver)    ;
-        Connection conn = DriverManager.getConnection( url, username, password) ;
+        Connection conn = DriverManager.getConnection( url      , 
+                                                       username ,
+                                                       password ) ;
         this.connection = conn ;
 
     }
+
+    public String getUrl() {
+        return url         ;
+    }
     
+    public String getDriver() {
+        return driver         ;
+    }
+
+    public String getUsername() {
+        return username         ;
+    }
+
+    public String getPassword() {
+        return password         ;
+    }
+
+    public Connection getConnection() {
+        return connection             ;
+    }
     
-    public List<String> extractHeader( String sql ) throws Exception {
+    public List<String> extractColumns( String sql ) throws Exception {
 
       PreparedStatement ps       = connection.prepareStatement(sql) ;
       ResultSetMetaData metaData = ps.getMetaData()                 ;
         
-      List<String> headers = new ArrayList() ;
+      List<String> headers       = new ArrayList()                  ;
       
        for (int i = 1; i <= metaData.getColumnCount() ; i++) {
-          headers.add( metaData.getColumnLabel(i) ) ;
+          headers.add( metaData.getColumnLabel(i) )          ;
        }
 
       return headers ;
@@ -58,4 +79,5 @@ public class SqlManager {
         if( driver.contains("mysql"))      return "mysql"      ;
         return null ;
     }
-}
+
+ }

@@ -1,11 +1,11 @@
 
 package ontop;
 
-/**
+ /**
  *
  * @author ryahiaoui
  */
-public class URLEncoder {
+ public class URLEncoder {
     
               
     public static String encode(String input) {
@@ -35,4 +35,4 @@ public class URLEncoder {
     private static boolean isUnsafe(char ch) {
         return " %".indexOf(ch) >= 0 ;
     }
-}
+ }
