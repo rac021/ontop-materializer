@@ -194,7 +194,7 @@
             if ( debug ) debugMode  ( st , query ) ;
             
          } catch ( Exception ex )   {
-              
+              ex.printStackTrace()  ;
         } finally {
         }
 
