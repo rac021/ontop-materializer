@@ -316,16 +316,16 @@
          // end users: this will redo the query 
          // reformulation, which can be expensive
                  
-         System.out.println("============================") ;
-         System.out.println("============================") ;
-         System.out.println(" The output SQL query :     ") ;
-         System.out.println("============================") ;
-         System.out.println("                            ") ;
-         System.out.println(sqlQuery)                       ;
-         System.out.println("                            ") ;
-         System.out.println("============================") ;
-         System.out.println("============================") ;
-         System.out.println("                            ") ;
+         System.out.println("==========================") ;
+         System.out.println("==========================") ;
+         System.out.println(" The output SQL query :   ") ;
+         System.out.println("==========================") ;
+         System.out.println("                          ") ;
+         System.out.println( sqlQuery                   ) ;
+         System.out.println("                          ") ;
+         System.out.println("======================================") ;
+         SSystem.out.println("=====================================") ;
+         System.out.println("                                      ") ;
                     
      } catch (OWLException ex) {
          Logger.getLogger(Processor.class.getName()).log( Level.SEVERE, null, ex ) ;
