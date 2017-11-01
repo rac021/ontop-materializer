@@ -36,15 +36,17 @@
     private final String obdaFile       ;
     private final String connectionFile ;
     
-    private final String STR_DTYPE     = "^^xsd:string"                                                                            ;
-    private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"                                       ;
-    private final String URI_VALIDATOR = "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;µs%°]*[-a-zA-Z0-9+&@#/%=~_|]" ;
+    private final String STR_DTYPE     = "^^xsd:string"                                                           ;
+    private final String RDF_TYPE_URI  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"                      ;
 
     private final List<String> XSD     = Arrays.asList ( "string" , "integer"  , "decimal" ,
                                                          "double" , "dateTime" , "date"    , 
                                                          "time"   , "duration" , "boolean" ) ;
+    private final String URI_VALIDATOR = 
+                        "^((https?|ftp|file)://|(www\\.))[-a-zA-Z0-9+&@#/%?=~_|!:,.;µs%°]*[-a-zA-Z0-9+&@#/%=~_|]" ;
+
     
-    private final static ByteArrayOutputStream OUTPUT_STREAM = new ByteArrayOutputStream()   ;
+    private final static ByteArrayOutputStream OUTPUT_STREAM = new ByteArrayOutputStream() ;
     
     public static boolean HIDE_SYSTEM_OUT = false ;
     
@@ -115,7 +117,7 @@
                 System.out.print  (" Query must have exactly 3 variables ( subject, predicate, object ) " ) ;
                 System.out.println(" when Turtle format is activated (-ttl ) " )                            ;
                 System.out.println(" See https://www.w3.org/TR/turtle  " )                                  ;
-                System.out.println(" Or try without -ttl parameter " )                                      ; 
+                System.out.println(" Or try without -ttl parameter " )                                      ;
                 System.exit(1) ;
             }
 
