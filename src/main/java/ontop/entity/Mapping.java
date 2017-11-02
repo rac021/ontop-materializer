@@ -1,10 +1,10 @@
 
-package ontop.entity;
+package ontop.entity ;
 
-import static java.text.MessageFormat.format;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List ;
+import java.util.regex.Matcher ;
+import java.util.regex.Pattern ;
+import static java.text.MessageFormat.format ;
 
 /**
  *
@@ -84,19 +84,19 @@ public class Mapping {
           if( driver.equalsIgnoreCase("POSTGRESQL")) {
 
             Pattern p = Pattern.compile("LIMIT +.?\\d+.*", Pattern.CASE_INSENSITIVE) ;
-            Matcher m = p.matcher( query ) ;
+            Matcher m = p.matcher( query )                                           ;
 
-            String limit = "" , offset = "" ;
+            String limit = "" , offset = ""                                          ;
 
              if(m.find()) {
                  limit = m.group() ;
              }
 
             p = Pattern.compile("OFFSET +.?\\d+ ", Pattern.CASE_INSENSITIVE ) ;
-            m = p.matcher( query ) ;
+            m = p.matcher( query )                                            ;
 
              if(m.find()) {
-                 offset = m.group() ;
+                 offset = m.group()                                          ;
              }
               
              

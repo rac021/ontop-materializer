@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath entry.Main_1_18 -q "SELECT ?S ?P ?O { ?S ?P ?O }"   -owl "/home/ryahiaoui/Bureau/COBY/SI/ontology/ontology.owl" -obda "/home/ryahiaoui/Bureau/COBY/V3/mapping.obda"  -out "/home/ryahiaoui/Bureau/COBY/V3/out/ONTOP_TTL/yedGen.ttl"  -connection "/home/ryahiaoui/Bureau/COBY/SI/OLA/CONNEC_V3.txt" -pageSize 20000 -f 500000 --not_out_ontology --out_ontology -batch -ttl --merge --debug -log_level OFF</exec.args>
+                <exec.executable>java</exec.executable>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address} -classpath %classpath entry.Main_1_18 -q "SELECT ?S ?P ?O { ?S ?P ?O }"   -owl "/home/ryahiaoui/Bureau/COBY/SI/ontology/ontology.owl" -obda "/home/ryahiaoui/Bureau/COBY/V3/mapping.obda"  -out "/home/ryahiaoui/Bureau/COBY/V3/out/ONTOP_TTL/yedGen.ttl"  -connection "/home/ryahiaoui/Bureau/COBY/SI/OLA/CONNEC_V3.txt" -pageSize 20000 -f 500000 --not_out_ontology --out_ontology -batch -ttl --merge --debug -log_level OFF</exec.args>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+            </properties>
+        </action>
+        <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath entry.Main_1_18 -q "SELECT ?S ?P ?O { ?S ?P ?O }"   -owl "/home/ryahiaoui/Bureau/COBY/SI/ontology/ontology.owl" -obda "/home/ryahiaoui/Bureau/COBY/V3/mapping.obda"  -out "/home/ryahiaoui/Bureau/COBY/V3/out/ONTOP_TTL/yedGen.ttl"  -connection "/home/ryahiaoui/Bureau/COBY/SI/OLA/CONNEC_V3.txt" -pageSize 20000 -f 500000 --not_out_ontology --out_ontology -batch -ttl --merge --debug -log_level OFF</exec.args>
+                <exec.executable>java</exec.executable>
+            </properties>
+        </action>
+    </actions>

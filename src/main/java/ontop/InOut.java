@@ -1,15 +1,16 @@
 
 package ontop;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.List;
+import java.io.File ;
+import java.util.List ;
+import java.io.IOException ;
+import java.nio.file.Files ;
+import java.nio.file.Path ;
+import java.nio.file.Paths ;
+import java.util.Collection ;
+import java.nio.file.LinkOption ;
+import java.nio.file.StandardOpenOption ;
+import java.nio.charset.StandardCharsets ;
 
 /**
  *
@@ -18,24 +19,24 @@ import java.util.List;
 public class InOut {
     
     public static List<String> readTextFile(String fileName) throws IOException {
-      Path path = Paths.get(fileName);
+      Path path = Paths.get(fileName)                          ;
       return Files.readAllLines(path, StandardCharsets.UTF_8 ) ;
     }
 
     public static void writeTextFile(List<String> strLines, String fileName ) throws IOException {
-      Path path = Paths.get(fileName) ;
-      Files.write(path, strLines, StandardCharsets.UTF_8,  StandardOpenOption.APPEND) ;
+      Path path = Paths.get(fileName)                                                ;
+      Files.write(path, strLines, StandardCharsets.UTF_8, StandardOpenOption.APPEND) ;
     }
     
     public static void writeTextFile( String text, String fileName ) throws IOException {
-      Path path = Paths.get(fileName)      ;
+      Path path = Paths.get(fileName)     ;
       Files.write( path, text.getBytes()) ;
     }
     
-    public static void deleteAndCreateFile(String path ) throws IOException {
+    public static void deleteAndCreateFile(String path ) throws IOException             {
        
-       String directory = path.substring(0 , path.lastIndexOf("/")) ;
-       Path pat = Paths.get(path) ;
+       String directory = path.substring(0 , path.lastIndexOf("/"))                     ;
+       Path   pat       = Paths.get(path)                                               ;
        boolean exists = Files.exists(pat, new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}) ;
        
        if(!exists) {
@@ -45,12 +46,12 @@ public class InOut {
            deleteFile(path) ;
        }
        
-       createFile(path) ;
+       createFile(path)     ;
     }
     
     public static void createFileIfNotExists(String path ) throws IOException {
        
-       Path pat = Paths.get(path) ;
+       Path    pat    = Paths.get(path)                                                 ;
        boolean exists = Files.exists(pat, new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}) ;
        
        if(!exists) {
@@ -63,7 +64,7 @@ public class InOut {
       
       Path path = Paths.get(directory) ;
        if(!Files.exists(path, new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}))
-       Files.createDirectory(path) ;
+       Files.createDirectory(path)     ;
     }
     
     private static void createFile( String path ) throws IOException {
@@ -92,18 +93,23 @@ public class InOut {
    }
 
     static void removeFile(String out) {
-        new File(out).delete() ;
+        new File(out).delete()         ;
     }
     
-     public static String getfileName(String outputFile) {
+    static void removeFiles( Collection<String> out) {
+       out.forEach( file -> removeFile(file ))       ;
+    }
+    
+    public static String getfileName(String outputFile) {
          Path path = Paths.get(outputFile)    ;
          return path.getFileName().toString() ;
     }    
       
-    public static String getFileExtension( String fileName ) {      
-        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0 )
+    public static String getFileExtension( String fileName )   {      
+        if( fileName.lastIndexOf(".") != -1 && 
+            fileName.lastIndexOf(".") != 0 )
         return fileName.substring(fileName.lastIndexOf(".") ) ;
-        else return "";
+        else return ""                                        ;
     }
      
     public static String getFileWithoutExtension( String fileName ) {      

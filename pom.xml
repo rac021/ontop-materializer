@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.unibz.inf.ontop</groupId>
     <artifactId>ontop-materializer</artifactId>
-    <version>1.18.0</version>
+    <version>1.18.1</version>
 
     <dependencies>
        
         <dependency>
             <groupId>it.unibz.inf.ontop</groupId>
             <artifactId>ontop-quest-owlapi</artifactId>
-            <version>1.18.0</version>
+            <version>1.18.1</version>
         </dependency>
         
     </dependencies>
@@ -24,9 +24,9 @@
             
             <dependencies>
                 <dependency>
-                    <groupId>postgresql</groupId>
+                    <groupId>org.postgresql</groupId>
                     <artifactId>postgresql</artifactId>
-                    <version>9.1-901.jdbc4</version>
+                    <version>42.1.4</version>
                 </dependency>
             </dependencies>
            

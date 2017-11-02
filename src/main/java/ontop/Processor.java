@@ -6,7 +6,11 @@ import java.util.List                                                 ;
 import java.util.Arrays                                               ;
 import java.util.ArrayList                                            ;
 import java.net.URLDecoder                                            ;
+import java.io.PrintStream                                            ;
+import java.util.LinkedHashSet                                        ;
+import ontop.entity.ResultInfo                                        ;
 import java.util.regex.Pattern                                        ;
+import java.io.ByteArrayOutputStream                                  ;
 import it.unibz.inf.ontop.model.OBDAModel                             ;
 import it.unibz.inf.ontop.io.ModelIOManager                           ;
 import java.io.UnsupportedEncodingException                           ;
@@ -38,18 +42,26 @@ public class Processor {
                                                          "double" , "dateTime" , "date"    , 
                                                          "time"   , "duration" , "boolean" ) ;
     
+    private final static ByteArrayOutputStream OUTPUT_STREAM = new ByteArrayOutputStream() ;
+    
+    public static boolean HIDE_SYSTEM_OUT = false ;
+    
     Processor ( String owlFile, String obdaFile ) throws Exception {
         ontology   = loadOWLOntology(owlFile) ;
         obdaModel  = loadOBDA(obdaFile)       ;
     }
     
-    public int run( String query        , 
-                    String outputFile   , 
-                    Boolean turtleOut   , 
-                    int fragment        ,
-                    int flushCount      ) throws Exception                                        {
+    public ResultInfo run( String  query       , 
+                           String  outputFile  , 
+                           Boolean turtleOut   , 
+                           int     fragment    ,
+                           int     flushCount  ,     
+                           boolean debug       ) throws Exception                                 {
 
-        QuestPreferences preference = new QuestPreferences() ;
+        
+        LinkedHashSet <String>  resultGeneratedFiles =  new LinkedHashSet <>()                    ;
+        QuestPreferences preference                  =  new QuestPreferences()                    ;
+
         preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_MAPPINGS, QuestConstants.TRUE)  ;
         preference.setCurrentValueOf(QuestPreferences.OBTAIN_FROM_ONTOLOGY, QuestConstants.TRUE)  ;
         preference.setCurrentValueOf(QuestPreferences.REFORMULATION_TECHNIQUE, QuestConstants.TW) ;
@@ -61,6 +73,7 @@ public class Processor {
         /*
          * Create the instance of Quest OWL reasoner.
          */
+        
         QuestOWLFactory factory      = new QuestOWLFactory() ;
         QuestOWLConfiguration config = QuestOWLConfiguration.builder()
                                                             .obdaModel(obdaModel)
@@ -79,13 +92,28 @@ public class Processor {
          /*
          * Prepare the data connection for querying.
          */
+                 
+        PrintStream p = System.out ;
+
+        if( HIDE_SYSTEM_OUT ) {
+           System.setOut( new PrintStream ( OUTPUT_STREAM ) ) ;
+           System.setErr( new PrintStream ( OUTPUT_STREAM ) ) ;
+        }
+        
         try (
               QuestOWL reasoner       = factory.createReasoner(ontology, config) ;
               QuestOWLConnection conn = reasoner.getConnection() ;
               QuestOWLStatement  st   = conn.createStatement()   ;
               QuestOWLResultSet  rs   = st.executeTuple(query)   ;
         )
-        {
+        { 
+           
+            if( HIDE_SYSTEM_OUT )   {
+              System.setOut( p )    ;
+              System.setErr( p )    ;
+              OUTPUT_STREAM.reset() ;
+            }
+           
             List<String>  lines      =  new ArrayList<>()        ;
             List<String>  line       =  new ArrayList()          ;
 
@@ -131,6 +159,7 @@ public class Processor {
                 if( fragment != 0 && TOTAL_EXTRACTION % fragment == 0  ) {
                             
                     if( ! lines.isEmpty() )  {
+                        resultGeneratedFiles.add(currentFile)     ;
                         InOut.createFileIfNotExists(currentFile)  ;
                         InOut.writeTextFile(lines, currentFile )  ;
                         lines.clear()                             ;
@@ -145,6 +174,7 @@ public class Processor {
                     
                     if( ! lines.isEmpty() )     {
                         /* Append to an existing file */
+                        resultGeneratedFiles.add(currentFile)    ;
                         InOut.createFileIfNotExists(currentFile) ;
                         InOut.writeTextFile(lines, currentFile ) ;
                         lines.clear()                            ;
@@ -161,6 +191,7 @@ public class Processor {
                                                         ++fragCounter ) ;
                 }
                 
+                resultGeneratedFiles.add( currentFile )   ;
                 InOut.createFileIfNotExists(currentFile)  ;
                 InOut.writeTextFile(lines, currentFile )  ;
                 lines.clear()                             ;
@@ -169,7 +200,7 @@ public class Processor {
             }
         } 
         
-        return TOTAL_EXTRACTION  ;
+         return new ResultInfo( TOTAL_EXTRACTION , resultGeneratedFiles ) ;
     }
 
     private List turtleAdapt ( List<String> line ) throws UnsupportedEncodingException {
