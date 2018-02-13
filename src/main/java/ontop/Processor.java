@@ -115,7 +115,7 @@ public class Processor {
             }
            
             List<String>  lines      =  new ArrayList<>()        ;
-            List<String>  line       =  new ArrayList()          ;
+            List<String>  line_part  =  new ArrayList()          ;
 
             int           loopForFlush  =  0                     ;
             int           columnSize    =  rs.getColumnCount()   ;
@@ -130,24 +130,25 @@ public class Processor {
         
             while (rs.nextRow()) {
                 
-                line.clear() ;
+                line_part.clear() ;
                 
                 for (int idx = 1; idx <= columnSize; idx++)  {
                                         
                     OWLObject binding = rs.getOWLObject(idx) ;
                     
-                    line.add(binding.toString())             ;
+                    line_part.add(binding.toString())        ;
                 }
                 
                 if( turtleOut ) {
 
-                    line = turtleAdapt (line)                ;
+                    line_part = turtleAdapt (line_part)      ;
                 }
                
-                if( !line.isEmpty() ) {
+                if( !line_part.isEmpty() ) {
                     
-                     lines.add( line
+                     lines.add ( line_part
                           .stream()
+                          .map( l -> l.replace("\n", " "))
                           .reduce( ( t, u )-> t + " " + u )
                           .get() + " ." )                    ;
                      
