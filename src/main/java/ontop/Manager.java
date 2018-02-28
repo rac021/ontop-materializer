@@ -421,16 +421,20 @@ public class Manager {
     return mustNotBeEmpty.stream().anyMatch( i -> i.contains(id)) ;
   }
 
-    private static List<Mapping> reorderList ( List<Mapping> mappings, 
-                                               List<String> mustNotBeEmpty ) {
-        int i = 0 ; 
-        while( i++ < mappings.size() - 1 ) {
-             if( mustNotBeEmpty.contains( mappings.get(i).getId())) {
-                mappings.add(0, mappings.remove(i));
-             }
-        }
+  private static List<Mapping> reorderList ( List<Mapping> mappings      , 
+                                             List<String> mustNotBeEmpty ) {
+    int i = 0 ;
+      
+    while ( i++ < mappings.size() - 1 ) {
+      if ( matchPattern( mustNotBeEmpty,  mappings.get(i).getId())) {
+         mappings.add(0, mappings.remove(i))  ;
+      }
+    }
         
         return mappings ;
     }
 
+   private static boolean matchPattern( List<String> list, String pattern ) {
+      return list.stream().anyMatch(str -> pattern.trim().contains(str))    ;
+   }
 }
