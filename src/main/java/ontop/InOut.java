@@ -3,16 +3,16 @@ package ontop;
 
 import java.io.File ;
 import java.util.List ;
-import java.io.IOException ;
-import java.nio.file.Files ;
 import java.nio.file.Path ;
 import java.nio.file.Paths ;
+import java.io.IOException ;
+import java.nio.file.Files ;
 import java.util.Collection ;
+import java.util.Comparator ;
 import java.nio.file.LinkOption ;
+import java.nio.file.FileVisitOption ;
 import java.nio.file.StandardOpenOption ;
 import java.nio.charset.StandardCharsets ;
-import java.nio.file.FileVisitOption;
-import java.util.Comparator;
 
 /**
  *
@@ -129,6 +129,11 @@ public class InOut {
            .sorted(Comparator.reverseOrder())
            .map(Path::toFile)
            .forEach(File::delete) ;
+        
+      if ( ! Files.exists(Paths.get(directory) , 
+           new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}) )
+       Files.createDirectory(Paths.get(directory))       ;
+        
     }
 
 }
