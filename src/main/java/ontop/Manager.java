@@ -226,9 +226,9 @@ public class Manager {
            }
           
            if( ! exists_ttl && 
-                 existsInList ( mapping.getId() , mustNotBeEmpty ) )     {
-                 InOut.removeDirectory( outFile ) ;
-                 break ;
+                 matchPattern ( mustNotBeEmpty ,mapping.getId() ) )       {
+                   InOut.removeDirectory( outFile ) ;
+                   break                            ;
            }
            
            System.out.println("  ")                                       ;
@@ -254,7 +254,7 @@ public class Manager {
 
                
              if( ( total_result == 0 ) &&  
-                 existsInList ( mapping.getId() , mustNotBeEmpty ) )     {
+                 matchPattern ( mustNotBeEmpty , mapping.getId() ) ) {
                  InOut.removeDirectory( outFile ) ;
                  break ;
              }
@@ -417,10 +417,6 @@ public class Manager {
     return m.group().split("driverClass")[1].trim() ;
   }
 
-  private static boolean existsInList(String id, List<String> mustNotBeEmpty ) {
-    return mustNotBeEmpty.stream().anyMatch( i -> i.contains(id)) ;
-  }
-
   private static List<Mapping> reorderList ( List<Mapping> mappings      , 
                                              List<String> mustNotBeEmpty ) {
     int i = 0 ;
@@ -431,7 +427,7 @@ public class Manager {
       }
     }
         
-        return mappings ;
+    return mappings ;
     }
 
    private static boolean matchPattern( List<String> list, String pattern ) {
