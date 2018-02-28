@@ -228,13 +228,13 @@ public class Manager {
            if( ! exists_ttl && 
                 matchPattern ( mustNotBeEmpty ,mapping.getId() ) )       {
                
+                InOut.removeDirectory( InOut.getFolder ( outFile )  )    ;
                 System.out.println(" ") ;
                 System.out.println( " No Datas generated for the node : [ "
                                     +  mapping.getCodeFromId() + " ] "
                                     + " Must not be EMPTY."  )           ;
                 System.out.println(" Break Process ")                    ;
                  
-                // InOut.removeDirectory( InOut.getFolder ( outFile )  ) ;
                 break ;
            }
            
@@ -262,7 +262,7 @@ public class Manager {
                
              if( ( total_result == 0 ) &&  
                  matchPattern ( mustNotBeEmpty , mapping.getId() ) )       {
-                 //InOut.removeDirectory( InOut.getFolder ( outFile ) )    ;
+                 InOut.removeDirectory( InOut.getFolder ( outFile ) )      ;
                  System.out.println(" ") ;
                  System.out.println( " No Datas generated for the node : [ "
                                      +  mapping.getCodeFromId() + " ] "
