@@ -158,7 +158,7 @@ public class Main_1_18 {
 
     }
 
-    private static Level checkLog(String level) {
+    private static Level checkLog (String level) {
      
         try {
              return  Level.toLevel(level.toUpperCase() )  ;
