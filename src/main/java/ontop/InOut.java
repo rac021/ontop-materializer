@@ -124,15 +124,17 @@ public class InOut {
     
     public static void removeDirectory( String directory ) throws Exception {
      
-      Path rootPath = Paths.get(directory);
+      Path rootPath = Paths.get(directory) ;
       Files.walk(rootPath, FileVisitOption.FOLLOW_LINKS)
            .sorted(Comparator.reverseOrder())
+           .filter(Files::isRegularFile)
            .map(Path::toFile)
            .forEach(File::delete) ;
-        
+      /*
       if ( ! Files.exists(Paths.get(directory) , 
            new LinkOption[]{ LinkOption.NOFOLLOW_LINKS}) )
        Files.createDirectory(Paths.get(directory))       ;
+      */
         
     }
 
