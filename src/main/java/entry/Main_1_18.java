@@ -2,6 +2,9 @@
 package entry ;
 
 import ontop.Manager ;
+import java.util.List ;
+import java.util.Arrays ;
+import java.util.ArrayList ;
 import org.slf4j.LoggerFactory ;
 import ch.qos.logback.classic.Level ;
 import ch.qos.logback.classic.Logger ;
@@ -25,15 +28,17 @@ public class Main_1_18 {
         boolean  not_out_onto    = false      ;
         boolean  out_onto        = false      ;
         
-        boolean  debug           = false      ;
-        boolean  existQuery      = false      ;
-        boolean  batch           = false      ;
-        int      pageSize        = -1         ;
-        boolean  merge           = false      ;
-        int      fragment        = 0          ;
-        int      flushCount      = 10_0000    ;
-       
-        Level    level           = Level.OFF  ; 
+        boolean      debug           = false             ;
+        boolean      existQuery      = false             ;
+        boolean      batch           = false             ;
+        int          pageSize        = -1                ;
+        boolean      merge           = false             ;
+        int          fragment        = 0                 ;
+        int          flushCount      = 10_0000           ;
+        
+        Level        level           = Level.OFF         ; 
+        
+        List<String> mustNotBeEmpty  = new ArrayList<>() ;
         
         for ( int i = 0 ; i < args.length ; i++ )  {
             
@@ -70,6 +75,8 @@ public class Main_1_18 {
               case "-flushCount"       : flushCount = Integer.parseInt ( args[i+1] ) ;
                                          break ;
               case "-log_level"        : level       = checkLog ( args[i+1] )        ;
+                                         break ;
+              case "-must_not_be_empty": mustNotBeEmpty = toList( args[i+1] )        ;
                                          break ;
             }
         }
@@ -131,6 +138,7 @@ public class Main_1_18 {
                             fragment        ,
                             merge           ,
                             flushCount      ,
+                            mustNotBeEmpty  ,
                             debug         ) ;
         
         System.out.println(" ")                                                  ;
@@ -158,7 +166,7 @@ public class Main_1_18 {
 
     }
 
-    private static Level checkLog (String level) {
+    private static Level checkLog(String level) {
      
         try {
              return  Level.toLevel(level.toUpperCase() )  ;
@@ -170,6 +178,10 @@ public class Main_1_18 {
              return Level.OFF                                         ;
         }
 
+    }
+
+    private static List<String> toList(String elements )         {
+       return  Arrays.asList(elements.trim().split("\\s*,\\s*")) ;
     }
     
 }

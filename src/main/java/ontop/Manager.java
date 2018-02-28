@@ -19,17 +19,18 @@ public class Manager {
   
   public static boolean  output_ontology        = true ;
    
-  public static void process ( String  owlFile         ,
-                               String  obdaFile        ,
-                               String  sparqlQuery     ,
-                               String  outFile         ,
-                               boolean turtleOutFormat ,
-                               boolean batch           ,
-                               int     pageSize        ,
-                               int     fragment        ,
-                               boolean merge           ,
-                               int     flushCount      ,
-                               boolean debug           )    throws Exception  {
+  public static void process ( String  owlFile             ,
+                               String  obdaFile            ,
+                               String  sparqlQuery         ,
+                               String  outFile             ,
+                               boolean turtleOutFormat     ,
+                               boolean batch               ,
+                               int     pageSize            ,
+                               int     fragment            ,
+                               boolean merge               ,
+                               int     flushCount          ,
+                               List<String> mustNotBeEmpty ,
+                               boolean debug               ) throws Exception  {
       
     if( ! InOut.existFile(owlFile) ) {
         System.out.println( " " )                           ;
@@ -72,6 +73,10 @@ public class Manager {
             String subOBDAFilePath    = subFolder + "mapping.obda"                       ;
             InOut.deleteAndCreateFile   ( subOBDAFilePath    )                           ;
 
+            if( outFile.endsWith("/")) {
+                outFile = outFile.substring (0 , outFile.length() - 1 ) ;
+            }
+            
             String outOntology        = InOut.getFolder ( outFile ) + "/Ontology.ttl"    ;
 
             Mapping emptyMapping      = new Mapping( "0" , "" , "")                      ;
@@ -143,8 +148,9 @@ public class Manager {
     String subOBDAFilePath    =  subFolder + "mapping.obda"                      ;
     InOut.deleteAndCreateFile ( subOBDAFilePath    )                             ;
     
-    int currentPage  = 0  ; 
-    int index        = 0  ; 
+    int     currentPage = 0     ; 
+    int     index       = 0     ; 
+    boolean exists_ttl  = false ; 
     
     if( ! mappings.isEmpty() ) {
        
@@ -177,6 +183,11 @@ public class Manager {
         InOut.writeTextFile( "" , owlFile  )    ;
         totalTriplesInOntology  =  0            ;
     }
+
+    if( mustNotBeEmpty != null && ! mustNotBeEmpty.isEmpty() ) {
+       // Reorder Mappings by putting thows are in the mustNotBeEmpty in first
+          reorderList( mappings , mustNotBeEmpty ) ;
+    }   
     
     for( Mapping mapping : mappings )  {
         
@@ -191,8 +202,8 @@ public class Manager {
           currentPage = 0                      ;
           mapping.applyOffset( currentPage ++) ;
           InOut.writeTextFile( mapping.toString(), subOBDAFilePath  ) ;
-
-            
+          exists_ttl = false ;
+          
           while( processMapping ( mapping                ,
                                   subOBDAFilePath        ,
                                   owlFile                ,
@@ -211,28 +222,43 @@ public class Manager {
 
               mapping.applyOffset(  ( ++currentPage -1 ) * pageSize   )   ;
               InOut.writeTextFile( mapping.toString(), subOBDAFilePath  ) ;
+              if( ! exists_ttl )   exists_ttl = true                      ;
            }
           
+           if( ! exists_ttl && 
+                 existsInList ( mapping.getId() , mustNotBeEmpty ) )     {
+                 InOut.removeDirectory( outFile ) ;
+                 break ;
+           }
+           
            System.out.println("  ")                                       ;
+           
         }
         else {
             
              System.out.println(" Process Node : " + mapping.getCodeFromId() + " ..." ) ;
              
-             processMapping ( mapping            ,
-                              subOBDAFilePath    ,
-                              owlFile            ,
-                              outFile            ,
-                              index   ++         ,
-                              sparqlQuery        ,
-                              turtleOutFormat    ,
-                              fragment           ,
-                              flushCount         ,
-                              debug              ,
-                              merge              ,
-                              true             ) ; 
-             
+             int total_result =  processMapping ( mapping            ,
+                                                  subOBDAFilePath    ,
+                                                  owlFile            ,
+                                                  outFile            ,
+                                                  index   ++         ,
+                                                  sparqlQuery        ,
+                                                  turtleOutFormat    ,
+                                                  fragment           ,
+                                                  flushCount         ,
+                                                  debug              ,
+                                                  merge              ,
+                                                  true             ) . getTotal() 
+                                                  - totalTriplesInOntology      ;
+
                
+             if( ( total_result == 0 ) &&  
+                 existsInList ( mapping.getId() , mustNotBeEmpty ) )     {
+                 InOut.removeDirectory( outFile ) ;
+                 break ;
+             }
+             
              System.out.println("  ")            ;
             
         }
@@ -240,15 +266,15 @@ public class Manager {
             
   }
   
-   private static ResultInfo processMappingOnto ( String  subFileObda    , 
-                                                 String  owlFile         ,
-                                                 String  outFiles        ,
-                                                 String  sparqlQuery     ,
-                                                 boolean turtleOutFormat ,
-                                                 int     fragment        ,
-                                                 int     flushCount      ,
-                                                 boolean debug           ,
-                                                 boolean output_ontology ) throws Exception {
+   private static ResultInfo processMappingOnto ( String  subFileObda     , 
+                                                  String  owlFile         ,
+                                                  String  outFiles        ,
+                                                  String  sparqlQuery     ,
+                                                  boolean turtleOutFormat ,
+                                                  int     fragment        ,
+                                                  int     flushCount      ,
+                                                  boolean debug           ,
+                                                  boolean output_ontology ) throws Exception {
  
     /* Process extraction */
      
@@ -301,12 +327,12 @@ public class Manager {
    
     Processor ontop =  new Processor ( owlFile, subFileObda ) ;
         
-      ResultInfo res = ontop.run ( sparqlQuery     , 
-                                   out             ,
-                                   turtleOutFormat ,
-                                   fragment        ,
-                                   flushCount      ,
-                                   debug         ) ;
+    ResultInfo res = ontop.run ( sparqlQuery     , 
+                                 out             ,
+                                 turtleOutFormat ,
+                                 fragment        ,
+                                 flushCount      ,
+                                 debug         ) ;
 
     /* if  RES = totalTriplesInOntology Then ONLY 
        Ontology triples have been extracted  */
@@ -390,5 +416,21 @@ public class Manager {
     m.find()                                        ;
     return m.group().split("driverClass")[1].trim() ;
   }
+
+  private static boolean existsInList(String id, List<String> mustNotBeEmpty ) {
+    return mustNotBeEmpty.stream().anyMatch( i -> i.contains(id)) ;
+  }
+
+    private static List<Mapping> reorderList ( List<Mapping> mappings, 
+                                               List<String> mustNotBeEmpty ) {
+        int i = 0 ; 
+        while( i++ < mappings.size() - 1 ) {
+             if( mustNotBeEmpty.contains( mappings.get(i).getId())) {
+                mappings.add(0, mappings.remove(i));
+             }
+        }
+        
+        return mappings ;
+    }
 
 }

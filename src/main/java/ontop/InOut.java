@@ -11,6 +11,8 @@ import java.util.Collection ;
 import java.nio.file.LinkOption ;
 import java.nio.file.StandardOpenOption ;
 import java.nio.charset.StandardCharsets ;
+import java.nio.file.FileVisitOption;
+import java.util.Comparator;
 
 /**
  *
@@ -58,7 +60,6 @@ public class InOut {
           createFile(path) ;
        }
     }
-    
 
     private static void checkOrCreateDirectory ( String directory ) throws IOException {
       
@@ -120,4 +121,14 @@ public class InOut {
       Path path = Paths.get(outputFile)  ;
       return path.getParent().toString() ;
     }
+    
+    public static void removeDirectory( String directory ) throws Exception {
+     
+      Path rootPath = Paths.get(directory);
+      Files.walk(rootPath, FileVisitOption.FOLLOW_LINKS)
+           .sorted(Comparator.reverseOrder())
+           .map(Path::toFile)
+           .forEach(File::delete) ;
+    }
+
 }

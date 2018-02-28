@@ -301,7 +301,6 @@ public class Processor {
        return XSD.contains(xsd) ;
    }
 
-   
    private static String getCurrentFile(  String outFile , String extension , int fragment  )   {
      
       if ( fragment <= 0 ) {
