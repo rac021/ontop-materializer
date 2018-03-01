@@ -102,6 +102,7 @@ public class Main_1_18 {
         System.out.println(" Out_Onto   =  " + ! not_out_onto  ) ;
         System.out.println(" BATCH      =  " + batch           ) ;
         System.out.println(" MERGE      =  " + merge           ) ;
+        System.out.println(" NotBeEmpty =  " + mustNotBeEmpty  ) ;
         System.out.println(" DEBUG_MODE =  " + debug           ) ;
         System.out.println(" -------------------------------- ") ;
         System.out.println("                                  ") ;
