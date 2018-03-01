@@ -181,7 +181,7 @@ public class Main_1_18 {
 
     }
 
-    private static List<String> toList(String elements )             {
+    private static List<String> toList ( String elements )           {
        return  Arrays.asList ( elements.trim().split ( "\\s*,\\s*" ) )
                      .stream()
                      .map ( String::trim )
