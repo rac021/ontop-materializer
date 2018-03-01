@@ -6,6 +6,7 @@ import java.util.List ;
 import java.util.Arrays ;
 import java.util.ArrayList ;
 import org.slf4j.LoggerFactory ;
+import java.util.stream.Collectors ;
 import ch.qos.logback.classic.Level ;
 import ch.qos.logback.classic.Logger ;
 
@@ -180,8 +181,12 @@ public class Main_1_18 {
 
     }
 
-    private static List<String> toList(String elements )         {
-       return  Arrays.asList(elements.trim().split("\\s*,\\s*")) ;
+    private static List<String> toList(String elements )             {
+       return  Arrays.asList ( elements.trim().split ( "\\s*,\\s*" ) )
+                     .stream()
+                     .map ( String::trim )
+                     .filter ( s -> ! s.isEmpty()   )
+                     .collect ( Collectors.toList() ) ;
     }
     
 }
