@@ -190,5 +190,14 @@ WHERE {
     Materializer.java
 
 ```
+
+## III. BENCH : **Full OBDA Mapping - All Variables + All Sites + All Years**
+
+ 1- ONTOP  ( xmx 32g ) :  **192_169_531** Triples ( With Inference + Without Duplicates ) :
+    → **118mn** ( ~ 2h ) - 1.3 Gb RAM — **27142 Triples/second** - ( 29.9 GB File Size )
+	  → **1_000_000_000** triples ~ **10h30mn**
  
- 
+ 2- DATARIV ( xmx 8g )  :  **219_181_348** Triples ( With Inference + Without Duplicates ) : 
+    → **05mn25** - 2.5 Gb RAM - **429767 Triples/second** ( 33. GB File size ) ⇒ **FACTEUR 15**
+  	→ **1_000_000_000** triples between **24mn & 28 mn** 
+
