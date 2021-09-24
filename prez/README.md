@@ -1,5 +1,7 @@
 
-*Path : /home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/*
+*Prez_Link : https://forgemia.inra.fr/anaee-dev/coby/-/blob/master/docs/coby_prez/Envi_Pipeline_Coby.pdf*
+
+*Local_Path* : **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/**
 
 ## Notes :
 
