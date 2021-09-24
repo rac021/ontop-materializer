@@ -23,7 +23,7 @@ Avantage :
 Inconvenient : 
 
    - Charge suplémentaire pour la BD ( dans le cas d'un endpoint Ontop )
-   - N'implement pas l'ensemble des fonctionalités SPARQL 1.1 :  https://ontop-vkg.org/guide/compliance.html#sparql-1-1
+   - N'implemente pas l'ensemble des fonctionalités SPARQL 1.1 :  https://ontop-vkg.org/guide/compliance.html#sparql-1-1
    - Mapping manuel ( avec Protegé + Plugins Ontop ) :
        * Compétence pour écrire la syntaxe tutrle ( et pas tous les chercheurs ont cette compétence ) 
        * La mise à jours des OBDA peut très vite devenir compliquée ( ajout, suppression, modification de noeuds ) => On devient donc moins productif !
