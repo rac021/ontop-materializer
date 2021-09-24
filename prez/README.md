@@ -22,10 +22,11 @@ Inconvenient :
    - N'implement pas l'ensemble des fonctionalités SPARQL 1.1 :  https://ontop-vkg.org/guide/compliance.html#sparql-1-1
    - Mapping manuel ( avec Protegé + Plugins Ontop ) :
        * Compétence pour écrire la syntaxe tutrle ( et pas tous les chercheurs ont cette compétence ) 
-       * La mise à jours des OBDA peut très vite devenir compliqué ( ajout, suppression, modification de noeuds )
+       * La mise à jours des OBDA peut très vite devenir compliquée ( ajout, suppression, modification de noeuds ) => On devient donc moins productif !
        * Méme si on a une GUI, celle-ci ne dispose pas d'une réprésentation visuelle du travail d'annotation 
-   - Perf : endpoint pas perf , pas scalable - Sparql 1.1 pas complet. Materializer : Pas perf + pas sacalable mains raisonneur OK 
-   - Erreurs dans les récriture des Requetes SQL : Requetes SQL qui ne marchent pas ( LIMIT - OFFSET, Sub Select..., maintenant "Maybe")
+   - Perf : endpoint pas perf , pas scalable - Sparql 1.1 pas complet. 
+            Materializer : Pas perf + pas sacalable mains raisonneur OK 
+   - Pas à l'abris d'erreurs dans les récriture des Requetes SQL : Requetes SQL qui ne marchent pas ( LIMIT - OFFSET, Sub Select..., maintenant "Maybe")
    - Pas de réponses pour certaines requetes SPARQL ( MEME sur la dernière version du CLI ) 
    
 
