@@ -171,11 +171,11 @@ WHERE {
 #### 2 COBY PIPELINE <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/coby_bin/pipeline/orchestrators** )</sup>
  
 ```
-   # DATA 
+   # DATA - /var/coby_export/
    time ./coby.sh login=admin extract="DATA" query=" SI = SI OBS FORET ALL &      \
          year = 2001 & CLASS = flux semi-horaire" job="admin" 
    
-   #SYNTHESIS
+   # SYNTHESIS
    time ./coby.sh login=admin extract="SYNTHESIS" query=" SI = SI OBS FORET ALL & \
         year = 2001 & CLASS = flux semi-horaire" job="admin" 
    
