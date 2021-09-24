@@ -87,7 +87,7 @@ Autant sur les perf je pense qu'on aurait pue faire un compromis.. Mais quand on
 
 ```
 
-#### 3.3. CONTRUCT & DUPLICATES !
+#### 3.3. CONSTRUCT & DUPLICATES !
 
 ```
 
