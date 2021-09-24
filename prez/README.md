@@ -41,7 +41,7 @@ Autant sur les perf je pense qu'on aurait pue faire un compromis.. Mais quand on
 
 ### I. Sparql Endpoint :
  
-  #### 1. Ontop CLI ( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/ontop_cli/cli/ontop-cli-4.1.1/** )
+  #### 1. Ontop CLI <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/ontop_cli/cli/ontop-cli-4.1.1/** )</sup>
 
 ```
        ./ontop endpoint  --db-password yahiaoui                                 \
@@ -51,7 +51,7 @@ Autant sur les perf je pense qu'on aurait pue faire un compromis.. Mais quand on
                          -u ryahiaoui -p properties.txt --port 5678
 ```
   
- #### 2. Blazegraph ( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/blazegraph** )
+ #### 2. Blazegraph <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/blazegraph** )</sup>
 
 ```
       java -jar blazegraph_2_1_6.jar
@@ -158,7 +158,7 @@ WHERE {
 
 ## II. MATERIALIZER :
 
-#### 1. ONTOP ( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/ontop_cli/cli/ontop-cli-4.1.1/** )
+#### 1. ONTOP <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/ontop_cli/cli/ontop-cli-4.1.1/** )</sup>
  
 ```
    ./ontop materialize --format  ntriples --db-password yahiaoui              \
@@ -168,17 +168,21 @@ WHERE {
                        -o data.nt -u ryahiaoui -p properties.txt
 ```
 
-#### 2 COBY PIPELINE ( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/coby_bin/pipeline/orchestrators** )
+#### 2 COBY PIPELINE <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/coby_bin/pipeline/orchestrators** )</sup>
  
 ```
-   time ./coby.sh login=admin extract="DATA" query=" SI = SI OBS FORET ALL &  year = 2001 & CLASS = flux semi-horaire" job="admin"
+   # DATA 
+   time ./coby.sh login=admin extract="DATA" query=" SI = SI OBS FORET ALL &      \
+         year = 2001 & CLASS = flux semi-horaire" job="admin" 
    
-   time ./coby.sh login=admin extract="SYNTHESIS" query=" SI = SI OBS FORET ALL &  year = 2001 & CLASS = flux semi-horaire" job="admin"
+   #SYNTHESIS
+   time ./coby.sh login=admin extract="SYNTHESIS" query=" SI = SI OBS FORET ALL & \
+        year = 2001 & CLASS = flux semi-horaire" job="admin" 
    
 ```
 
 #### 3 NEW COBY PIPELINE : NetBeans + 
- ( **/home/ryahiaoui/Téléchargements/coby/COBY_1.8_01_04_2021/07-05-2021/coby/GIT_LAB/COBY_05_07_2021_/coby/coby_bin/pipeline/SI/FORET_ALL/output/02_data/** )
+ <sup>( **/home/ryahiaoui/Téléchargements/coby/COBY_1.8_01_04_2021/07-05-2021/coby/GIT_LAB/COBY_05_07_2021_/coby/coby_bin/pipeline/SI/FORET_ALL/output/02_data/** )</sup>
  
 ```
     Materializer.java
