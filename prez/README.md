@@ -157,19 +157,16 @@ WHERE {
 
 #### 3.4. FULL SYNTHESIS SPARQL QUERY :
  
-```
-    # Blazegraph :
-    
-    https://gist.github.com/rac021/58d31dff6f757dc6f09b8672b86eb386
-    
-```
+ * ##### Blazegraph :
+ 
+  - https://gist.github.com/rac021/58d31dff6f757dc6f09b8672b86eb386
+   
 
-```
-    # Adapted For ONTOP 
-    
-    https://gist.github.com/rac021/74a1b5f62b54245e601dcaf8ba558ea5
+  * ##### Adapted For ONTOP 
 
-```
+  - https://gist.github.com/rac021/74a1b5f62b54245e601dcaf8ba558ea5
+
+---
 
 ## II. MATERIALIZER :
 
