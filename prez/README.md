@@ -1,5 +1,9 @@
 
-<sup>Ancienne presentation ( 2017 ), apporter des mises à jour au fur de l'avancement sur les dernières version d'Ontop ( materializer + enpoint )</sup>
+<sup>**Présentation en 2 parties**</sup>
+
+* <sup>**Partie 1 :** Ancienne presentation ( 2017 ) , apporter des mises à jour sur les dernières version d'Ontop ( materializer + enpoint ) au fur de l'avancement</sup>
+
+* <sup>**Partie 2 :** Démo : Comparaison Ontop - Blazegraph - Pipeline Coby</sup>
 
 *Prez_Link : https://forgemia.inra.fr/anaee-dev/coby/-/blob/master/docs/coby_prez/Envi_Pipeline_Coby.pdf*
 
