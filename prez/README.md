@@ -27,6 +27,8 @@ Avantage :
   - Ontop Endpoint : Synchronisation avec la BD
   - Sparql vers SQL ( entre 6000 et 10000 Lignes SQL ) 
   - Plugin Protegé ( GUI ) : Validation des entités ( Concepts ) mais pas des requetes SQL
+  - Ontop Materializer supporte le Streaming depuis 2020
+  - Raisonneur QUEST de plus en plus mature
   
 Inconvenient : 
 
@@ -36,9 +38,9 @@ Inconvenient :
        * Compétence pour écrire la syntaxe tutrle ( et pas tous les chercheurs ont cette compétence ) 
        * La mise à jours des OBDA peut très vite devenir compliquée ( ajout, suppression, modification de noeuds ) => On devient donc moins productif !
        * Méme si on a une GUI, celle-ci ne dispose pas d'une réprésentation visuelle du travail d'annotation 
-   - Perf : endpoint pas perf , pas scalable - Sparql 1.1 pas complet. 
-            Materializer : Pas perf + pas sacalable mains raisonneur OK 
-   - Pas à l'abris d'erreurs dans les récriture des Requetes SQL : Requetes SQL qui ne marchent pas ( LIMIT - OFFSET, Sub Select..., maintenant "Maybe")
+   - Perf : Endpoint pas perf , pas scalable : Fonctionnement identique avec petite ou grosse machine. 
+            Materializer : Méme s'il supporte le Streaming, il n'est pas perf ( pas sacalable ) : Fonctionnement identique avec petite ou grosse machine. 
+   - Pas à l'abris d'erreurs dans les récriture des Requetes SQL : Requetes SQL qui ne marchent pas ( LIMIT - OFFSET, Sub Select..., maintenant "Maybe") https://github.com/ontop/ontop/issues/438
    - Pas de réponses pour certaines requetes SPARQL ( MEME sur la dernière version du CLI ) 
    
 
