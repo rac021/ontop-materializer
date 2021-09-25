@@ -15,8 +15,8 @@ Présentation ( Suite ) :
 
 Ontop a 2 modes de fonctionnement : 
 
-  - Géneration à la volée de triplets virtuel 
-  - Matérialisation 
+  - Endpoint : Géneration à la volée de triplets virtuel afin de répondre à une requete SPARQL
+  - Le materializer : Matérialisation des triplets sur disque 
 
 Avantage :
 
