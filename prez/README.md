@@ -13,6 +13,8 @@
 
 Présentation ( Suite ) :
 
+### Résumé avant la Démo : 
+
 Ontop a 2 modes de fonctionnement : 
 
   - Endpoint : Géneration à la volée de triplets virtuel afin de répondre à une requete SPARQL
@@ -21,8 +23,8 @@ Ontop a 2 modes de fonctionnement :
 Avantage :
 
   - Open source - Communauté réactive
-  - Triplets virtuel ( non matérialisés ) - Générés à la volée
-  - Synchronisation avec la BD
+  - Ontop Endpoint : Triplets virtuel ( non matérialisés ) - Générés à la volée
+  - Ontop Endpoint : Synchronisation avec la BD
   - Sparql vers SQL ( entre 6000 et 10000 Lignes SQL ) 
   - Plugin Protegé ( GUI ) : Validation des entités ( Concepts ) mais pas des requetes SQL
   
