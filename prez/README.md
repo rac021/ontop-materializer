@@ -91,22 +91,25 @@ Autant sur les perf je pense qu'on aurait pue faire un compromis.. Mais quand on
 
 ```
 
+# DUPLICATE TRIPLES !
+
 CONSTRUCT { 
 
-  ?s <http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#measurementFor> ?o .
+  ?s <http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#hasMeasurement> ?o .
 }
 
 WHERE {
 
    SELECT  ?s  ?o  WHERE {
      
-    ?s ?p ?o .
-     
-     FILTER ( str(?o ) = "http://foret/obs/categ/21/1" ) . 
+    ?s <http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#hasMeasurement> ?o .
+    ?s <http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#hasContext> ?context .
+    
+  FILTER (str(?s ) = "http://foret/obs/Transpiration/21/37014306" ) . 
    
    } LIMIT 10
-    
 }
+
 
 ```
 
