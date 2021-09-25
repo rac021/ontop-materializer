@@ -201,3 +201,32 @@ WHERE {
     → **05mn25** - 2.5 Gb RAM - **429767 Triples/second** ( 33. GB File size ) ⇒ **FACTEUR 15**
   	→ **1_000_000_000** triples between **24mn & 28 mn** 
 
+
+----
+
+
+## Protegé Demo :
+
+
+```
+
+jdbc:postgresql://127.0.0.1/foret
+
+
+######
+
+<http://anaee.inra.fr/observation/{id}> a oboe-core:#Observation ; 
+oboe-core:#hasMeasurement <http://anaee.inra.fr/measurement/{id}> . 
+
+select 1 as id
+
+######
+
+<http://anaee.inra.fr/measurement/{id}> a oboe-core:#Measurement ;
+oboe-core:#hasValue <http://10> . 
+
+SELECT 1 as id
+
+######
+
+```
