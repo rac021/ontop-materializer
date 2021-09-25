@@ -18,7 +18,7 @@ Avantage :
   - Triplets virtuel ( non matérialisés ) - Générés à la volée
   - Synchronisation avec la BD
   - Sparql vers SQL ( entre 6000 et 10000 Lignes SQL ) 
-  - Plugin Protegé ( GUI ).
+  - Plugin Protegé ( GUI ) : Validation des entités ( Concepts ) mais pas des requetes SQL
   
 Inconvenient : 
 
