@@ -215,24 +215,25 @@ WHERE {
 ----
 
 
-## Protegé Demo :
+## Protegé Demo : <sup>/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/protege/Protege-5.5.0</sup>
 
 
 ```
 
 jdbc:postgresql://127.0.0.1/foret
 
+PREFIX : oboe-core : http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#
 
 ######
 
-<http://anaee.inra.fr/observation/{id}> a oboe-core:#Observation ; 
+<http://anaee.inra.fr/observation/{id}> a oboe-core:Observation ; 
 oboe-core:#hasMeasurement <http://anaee.inra.fr/measurement/{id}> . 
 
 select 1 as id
 
 ######
 
-<http://anaee.inra.fr/measurement/{id}> a oboe-core:#Measurement ;
+<http://anaee.inra.fr/measurement/{id}> a oboe-core:Measurement ;
 oboe-core:#hasValue <http://10> . 
 
 SELECT 1 as id
