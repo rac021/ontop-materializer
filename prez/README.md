@@ -1,5 +1,5 @@
 
-<sup>**Présentation en 2 parties**</sup>
+<sup>**Présentation en 2 parties**</sup> 
 
 * <sup>**Partie 1 :** Ancienne presentation ( 2017 ) , apporter des mises à jour sur les dernières version d'Ontop ( materializer + enpoint ) au fur de l'avancement</sup>
 
@@ -7,7 +7,7 @@
 
 *Prez_Link : https://forgemia.inra.fr/anaee-dev/coby/-/blob/master/docs/coby_prez/Envi_Pipeline_Coby.pdf*
 
-*Local_Path* : **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/**
+*Local_Path* : **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/**
 
 ## Notes :
 
