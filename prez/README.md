@@ -241,3 +241,7 @@ SELECT 1 as id
 ######
 
 ```
+
+---
+
+Le Web des données (linked data, en anglais) est une initiative du W3C (Consortium World Wide Web) visant à favoriser la publication de données structurées sur le Web, non pas sous la forme de silos de données isolés les uns des autres, mais en les reliant entre elles pour constituer un réseau global d'informations.
