@@ -173,11 +173,11 @@ WHERE {
 #### 1. ONTOP <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/ontop_cli/cli/ontop-cli-4.1.1/** )</sup>
  
 ```
-   ./ontop materialize --format  ntriples --db-password yahiaoui              \
-                       --db-url jdbc:postgresql://127.0.0.1/foret             \
-                       -m ontology_mapping/0_mapping_CSV_Transpiration_0.obda \
-                       -t ontology_mapping/ontology.owl                       \
-                       -o data.nt -u ryahiaoui -p properties.txt
+   time ./ontop materialize --format  ntriples --db-password yahiaoui              \
+                           --db-url jdbc:postgresql://127.0.0.1/foret             \
+                           -m ontology_mapping/0_mapping_CSV_Transpiration_0.obda \
+                           -t ontology_mapping/ontology.owl                       \
+                           -o data.nt -u ryahiaoui -p properties.txt
 ```
 
 #### 2 COBY PIPELINE <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/coby_bin/pipeline/orchestrators** )</sup>
