@@ -33,11 +33,11 @@ Avantage :
 Inconvenient : 
 
    - Charge suplémentaire pour la BD ( dans le cas d'un endpoint Ontop )
-   - N'implemente pas l'ensemble des fonctionalités SPARQL 1.1 :  https://ontop-vkg.org/guide/compliance.html#sparql-1-1
    - Mapping manuel ( avec Protegé + Plugins Ontop ) :
        * Compétence pour écrire la syntaxe tutrle ( et pas tous les chercheurs ont cette compétence ) 
        * La mise à jours des OBDA peut très vite devenir compliquée ( ajout, suppression, modification de noeuds ) => On devient donc moins productif !
        * Méme si on a une GUI, celle-ci ne dispose pas d'une réprésentation visuelle du travail d'annotation 
+   - N'implemente pas l'ensemble des fonctionalités SPARQL 1.1 :  https://ontop-vkg.org/guide/compliance.html#sparql-1-1   
    - Perf : Endpoint pas perf , pas scalable : Fonctionnement identique avec petite ou grosse machine. 
             Materializer : Méme s'il supporte le Streaming, il n'est pas perf ( pas sacalable ) : Fonctionnement identique avec petite ou grosse machine. 
    - Pas à l'abris d'erreurs dans les récriture des Requetes SQL : Requetes SQL qui ne marchent pas ( LIMIT - OFFSET, Sub Select..., maintenant "Maybe") https://github.com/ontop/ontop/issues/438
