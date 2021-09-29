@@ -25,6 +25,7 @@ Avantage :
   - Open source - Communauté réactive
   - Ontop Endpoint : Triplets virtuel ( non matérialisés ) - Générés à la volée
   - Ontop Endpoint : Synchronisation avec la BD
+  - OBDA ( Simple ) VS R2RML ( https://www.w3.org/TR/r2rml/#default-mappings )
   - Sparql vers SQL ( entre 6000 et 10000 Lignes SQL ) 
   - Plugin Protegé ( GUI ) : Validation des entités ( Concepts ) mais pas des requetes SQL
   - Ontop Materializer supporte le Streaming depuis 2020
