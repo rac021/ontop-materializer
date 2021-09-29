@@ -34,7 +34,7 @@ Inconvenient :
 
    - Charge suplémentaire pour la BD ( dans le cas d'un endpoint Ontop )
    - Mapping manuel ( avec Protegé + Plugins Ontop ) :
-       * Compétence pour écrire la syntaxe tutrle ( et pas tous les chercheurs ont cette compétence ) 
+       * Compétence pour écrire la syntaxe turtle ( et pas tous les chercheurs ont cette compétence ) 
        * La mise à jours des OBDA peut très vite devenir compliquée ( ajout, suppression, modification de noeuds ) => On devient donc moins productif !
        * Méme si on a une GUI, celle-ci ne dispose pas d'une réprésentation visuelle du travail d'annotation 
    - N'implemente pas l'ensemble des fonctionalités SPARQL 1.1 :  https://ontop-vkg.org/guide/compliance.html#sparql-1-1   
