@@ -52,6 +52,13 @@ Autant sur les perf je pense qu'on aurait pue faire un compromis.. Mais quand on
 
 ## Demo Time :
 
+### *Intro :*
+
+  - *Annotation_Graph :* [Link_To_Graph_Image](https://user-images.githubusercontent.com/7684497/141688345-9105db9d-5ba0-4ee2-943c-f84886d2f4a1.png)
+
+  - *Generated_ODDA_File :* [Link_To_OBDA_File](https://github.com/rac021/ontop-materializer/blob/master/prez/annotation/0_mapping_CSV_Transpiration_0.obda)
+
+
 ### I. Sparql Endpoint :
  
   #### 1. Ontop CLI <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/ontop_cli/cli/ontop-cli-4.1.1/** )</sup>
