@@ -258,3 +258,17 @@ Le Web des données (linked data, en anglais) est une initiative du W3C (Consort
 ---
 
 LIMITATION : BLAZEGRAPH CLUSTERING, RDFOX...
+
+
+---
+
+# Démo Coby
+
+ - Path : /home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/coby/coby/
+ - 
+ - Example de commande : *
+
+```
+  reset ; time ./coby.sh login=admin extract="SYNTHESIS" query=" SI = SI OBS FORET ALL &  \
+                year = 2001_2002 & CLASS = flux semi-horaire" job="admin"
+```
