@@ -199,6 +199,39 @@ WHERE {
    time ./coby.sh login=admin extract="SYNTHESIS" query=" SI = SI OBS FORET ALL & \
         year = 2001 & CLASS = flux semi-horaire" job="admin" 
    
+   
+   ## SPARQL SYNTHESIS EXP :
+   
+   PREFIX : <http://opendata.inra.fr/anaeeOnto#> 
+   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+   PREFIX oboe-core: <http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#> 
+   PREFIX oboe-standard: <http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#>
+   PREFIX oboe-temporal: <http://ecoinformatics.org/oboe/oboe.1.2/oboe-temporal.owl#>
+   PREFIX oboe-characteristics: <http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#>
+   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+   SELECT * { 
+      ?idVariableSynthesis    a                     :Variable           .
+      ?idVariableSynthesis   :ofVariable            ?variable           .
+      ?idVariableSynthesis   :hasCategory           ?category           .
+      ?variable              :hasAnaeeVariableName  ?anaeeVariableName  .
+      ?idVariableSynthesis   :hasLocalVariableName  ?localVariableName  .
+      ?idVariableSynthesis   :hasUnit               ?unit              .
+      ?unit                  :hasAnaeeUnitName      ?anaeeUnitName      .
+      ?category              :hasCategoryName       ?categoryName       .
+      ?idVariableSynthesis   :hasSite               ?site               .
+      ?site                  :hasLocalSiteName      ?localSiteName      . 
+      ?site                  :hasAnaeeSiteName      ?anaeeSiteName      .           
+      ?site                  :hasSiteType           ?ecoType            .
+      ?site                  :hasSiteTypeName       ?ecoTypeName        .
+      ?site                  :hasNetwork            ?network            .
+      ?network               :hasNetworkName        ?networkName        .
+      ?idVariableSynthesis   :hasNbData             ?nbData             .
+      ?idVariableSynthesis   :hasYear               ?year               .
+      ?idVariableSynthesis   :hasISName             ?ISName             .
+      ?idVariableSynthesis   :hasGraphClassName     ?graphClassName     .
+   }
+ 
 ```
 
 #### 3 NEW COBY PIPELINE : NetBeans + 
