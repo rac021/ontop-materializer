@@ -6,6 +6,7 @@
 * <sup>**Partie 2 :** Démo : Comparaison Ontop - Blazegraph - Pipeline Coby</sup>
 
 *Prez_Link : https://forgemia.inra.fr/anaee-dev/coby/-/blob/master/docs/coby_prez/Envi_Pipeline_Coby.pdf*
+             https://forgemia.inra.fr/rachid.yahiaoui/prez/-/blob/main/presentations/Work4Graph_Integration_2021/Coby_Pipeline.pdf
 
 *Local_Path* : **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/**
 
