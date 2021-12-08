@@ -188,7 +188,7 @@ WHERE {
                            -o data.nt -u ryahiaoui -p properties.txt
 ```
 
-#### 2 COBY PIPELINE <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/coby_bin/pipeline/orchestrators** )</sup>
+#### 2 COBY PIPELINE <sup>( **/home/ryahiaoui/Documents/INRA/2021/2021/Présentation_SI/ONTOP/demo/coby/coby/coby_bin/pipeline/orchestrators** )</sup>
  
 ```
    # DATA - /var/coby_export/
